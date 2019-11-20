@@ -1,0 +1,6 @@
+﻿Application.obj : error LNK2019: unresolved external symbol __imp__glewInit@0 referenced in function "private: void __thiscall Application::Init(void)" (?Init@Application@@AAEXXZ)
+Application.obj : error LNK2019: unresolved external symbol __imp__glewGetErrorString@4 referenced in function "private: void __thiscall Application::Init(void)" (?Init@Application@@AAEXXZ)
+Logger.obj : error LNK2001: unresolved external symbol __imp__glewGetErrorString@4
+C:\Users\james\Desktop\GP3\RockyEngine\dependencies\lib\glew32.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\james\Desktop\GP3\RockyEngine\dependencies\lib\glew32s.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\james\Desktop\GP3\RockyEngine\bin\Win32\Debug\RockyEngine_Win32.exe : fatal error LNK1120: 2 unresolved externals

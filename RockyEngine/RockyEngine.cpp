@@ -1,11 +1,10 @@
 #include <iostream>
 #include "Logger.h"
-int main()
+#include "Application.h"
+
+int main(int argc,char* argv[])
 {
-	std::cout << "Hello World!\n";
-	LOG_ERROR("You it worked?!!");
-	LOG_WARNING("You it worked?!!");
-	LOG_DEBUG("You it worked?!!");
-	LOG_INFO("hello");
+	Application::Instance()->Run();
+	return 0;
 }
 

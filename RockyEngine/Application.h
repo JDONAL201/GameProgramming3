@@ -1,6 +1,6 @@
 #pragma once
-
-const enum ApplicationState
+#include "pch.h"
+enum ApplicationState
 {
 	INITILISING,RUNNING,QUITING
 };
@@ -8,9 +8,9 @@ class Application
 {
 private:
 
-	static Application* m_application;
-	SDL_Window* m_window = nullptr;
-	SDL_GLContext m_glContext = nullptr;
+	static Application* m_application; 
+	SDL_Window* m_window = nullptr; 
+	SDL_GLContext m_glContext = nullptr; 
 	int m_windowWidth = 1280;
 	int m_windowHeight = 720;
 	ApplicationState m_appState = ApplicationState::INITILISING;
