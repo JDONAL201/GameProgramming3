@@ -1,12 +1,19 @@
 #pragma once
 #include "pch.h"
+#include "Entity.h"
+#define WINDOW_W Application::GetInstance()->GetWindowWidth()
+#define WINDOW_H Application::GetInstance()->GetWindowHeight()
+
+
 enum ApplicationState
 {
 	INITILISING,RUNNING,QUITING
 };
 class Application
 {
+	
 private:
+	std::vector <Entity*> m_entities;
 
 	static Application* m_application; 
 	SDL_Window* m_window = nullptr; 
@@ -21,12 +28,17 @@ private:
 	void OpenGlInit();
 	void Loop();
 	void Quit();
-
+	void Update(float deltaTime);
+	void Render();
+	void SwapBuffer();
 public:
 
 	~Application();
 	static Application* Instance();
 	void Run();
+	void GameInit();
+	inline int GetWindowHeight() { return m_windowHeight; }
+	inline int GetWindowWidth() { return m_windowWidth; }
 
 };
 

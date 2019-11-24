@@ -1,6 +1,8 @@
-﻿  Application.cpp
+﻿  MeshRenderer.cpp
   RockyEngine.vcxproj -> C:\Users\james\Desktop\GP3\RockyEngine\bin\x64\Debug\RockyEngine_x64.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\glew32.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\SDL2.dll
   2 File(s) copied
-  0 File(s) copied
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\simple_FRAG.glsl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\simple_VERT.glsl
+  2 File(s) copied

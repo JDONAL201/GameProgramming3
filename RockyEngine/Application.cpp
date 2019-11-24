@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Application.h"
+#include "MeshRenderer.h"
+#include "Quad.h"
 #include "Common.h"
 
 Application* Application::m_application = nullptr;
@@ -33,6 +35,9 @@ void Application::Init()
 	SDL_CaptureMouse(SDL_TRUE);
 	LOG_DEBUG("ROCKY ENGINE: INTIALISED");
 
+	OpenGlInit();
+	GameInit();
+
 }
 
 void Application::OpenGlInit()
@@ -63,14 +68,26 @@ void Application::OpenGlInit()
 	glEnable(GL_BLEND);
 	GL_ATTEMPT(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
+
 	//turn on back face culling
-	///GL_ATTEMPT(glEnable(GL_CULL_FACE));
-	///GL_ATTEMPT(glCullFace(GL_BACK));
+	GL_ATTEMPT(glEnable(GL_CULL_FACE));
+	GL_ATTEMPT(glCullFace(GL_BACK));
 
 	glViewport(0, 0, (GLsizei)m_windowWidth, (GLsizei)m_windowHeight); // Set up the view port , 0 ,0 specifies the lower left of the viewport in pixels and then the window width and height are prov
 
 }
+void Application::GameInit()
+{
+	//Students should aim to have a better way of managing the scene for coursework
+	//TODO:::Students should aim to have a better way of managing the scene for the coursework
+	m_entities.push_back(new Entity());
+	m_entities.at(0)->AddComponent(new MeshRenderer(new Mesh(Quad::quadVertices, Quad::quadIndices), new ShaderProgram(PATH_SHADER + "simple_VERT.glsl", PATH_SHADER + "simple_FRAG.glsl"))); //,new Texture(ASSET_PATH + "Wood.jpg")
+	m_entities.at(0)->AddComponent(new MeshRenderer(new Mesh(Quad::quadVertices, Quad::quadIndices), new ShaderProgram(PATH_SHADER + "simple_VERT.glsl", PATH_SHADER + "simple_FRAG.glsl"))); //new Texture(ASSET_PATH + "Wood.jpg")
+	m_entities.at(0)->GetTransform()->SetPosition(glm::vec3(0.f, 0.f, 10.f));
+	m_entities.at(0)->GetTransform()->SetScale(glm::vec3(10, 10, 10));
 
+	m_entities.push_back(new Entity());
+}
 void Application::Loop()
 {
 	m_appState = ApplicationState::RUNNING;
@@ -115,11 +132,33 @@ void Application::Loop()
 		m_worldDeltaTime = deltaTime;
 		previousTicks = currentTicks;
 
-
-		SDL_GL_SwapWindow(m_window);
+		Update(deltaTime);
+		Render();
+		SwapBuffer();
 	}
 }
+void Application::SwapBuffer()
+{
+	SDL_GL_SwapWindow(m_window);
+}
+void Application::Render()
+{
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	for (auto& a : m_entities)
+	{
+		a->OnRender();
+	}
 
+
+}
+void Application::Update(float deltaTime)
+{
+	for (auto& a : m_entities)
+	{
+		a->OnUpdate(deltaTime);
+	}
+}
 void Application::Quit()
 {
 	//Close SDL
