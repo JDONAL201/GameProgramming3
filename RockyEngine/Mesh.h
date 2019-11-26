@@ -11,6 +11,7 @@ private:
 	std::vector<int> m_indices;
 	GLuint m_vao, m_vbo, m_ebo;
 
+
 public:
 
 	Mesh(std::vector<Vertex> vertices, std::vector<int> indices);

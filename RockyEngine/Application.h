@@ -4,6 +4,7 @@
 #define WINDOW_W Application::GetInstance()->GetWindowWidth()
 #define WINDOW_H Application::GetInstance()->GetWindowHeight()
 
+class Camera; // forward declare
 
 enum ApplicationState
 {
@@ -14,6 +15,7 @@ class Application
 	
 private:
 	std::vector <Entity*> m_entities;
+	Camera* m_mainCamera = nullptr;
 
 	static Application* m_application; 
 	SDL_Window* m_window = nullptr; 
@@ -39,6 +41,9 @@ public:
 	void GameInit();
 	inline int GetWindowHeight() { return m_windowHeight; }
 	inline int GetWindowWidth() { return m_windowWidth; }
+
+	inline Camera* GetCamera() { return m_mainCamera; }
+	void SetCamera(Camera* camera);
 
 };
 

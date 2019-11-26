@@ -1,8 +1,20 @@
-﻿  MeshRenderer.cpp
+﻿  Application.cpp
+  Model.cpp
+  Generating Code...
   RockyEngine.vcxproj -> C:\Users\james\Desktop\GP3\RockyEngine\bin\x64\Debug\RockyEngine_x64.exe
+  C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp.dll
+  C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp.exe
+  C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp_viewer.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\glew32.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\SDL2.dll
-  2 File(s) copied
+  5 File(s) copied
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\cube.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\MLE-opacity.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\MLE-texture.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\MLE-wheel.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\PoliceCar.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\PoliceCar.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\simple_FRAG.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\simple_VERT.glsl
-  2 File(s) copied
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Wood.jpg
+  9 File(s) copied

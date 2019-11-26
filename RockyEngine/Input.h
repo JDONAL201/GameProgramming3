@@ -1,0 +1,23 @@
+#pragma once
+#include "Common.h"
+#include "InputState.h"
+
+#define INPUT Input::GetInstance()
+
+class Input
+{
+private:
+	Input();
+	static Input* m_instance;
+	InputState m_state;
+
+public:
+
+	static Input* GetInstance();
+	void SetKey(SDL_Keycode key, bool state);
+	bool GetKey(SDL_Keycode key); // will check if currently down
+
+	glm::ivec2 GetMousePos() { return m_state.mousePos; }
+	void MoveMouse(glm::ivec2 delta) { m_state.mousePos += delta; }
+};
+

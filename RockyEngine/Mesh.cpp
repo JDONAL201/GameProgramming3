@@ -3,7 +3,6 @@
 
 Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices)
 {
-
 	m_indices = indices;
 	m_vertices = vertices;
 
@@ -11,6 +10,8 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices)
 
 	GL_ATTEMPT(glGenVertexArrays(1, &m_vao)); //Generate vertex array object 
 	GL_ATTEMPT(glBindVertexArray(m_vao));
+	
+
 	
 	GL_ATTEMPT(glGenBuffers(1, &m_vbo));
 	GL_ATTEMPT(glBindBuffer(GL_ARRAY_BUFFER, m_vbo));
@@ -41,5 +42,6 @@ void Mesh::SetUpAttributes(int index, int count, int type, size_t offset)
 void Mesh::Bind()
 {
 	// TODO: don't bind mesh if it has already been bound
+
 	GL_ATTEMPT(glBindVertexArray(m_vao));
 }

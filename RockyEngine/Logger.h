@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 
 enum Severity
 {
@@ -31,7 +32,7 @@ class Logger
 private:
 	Logger();
 public:
-	static void OutputLog(Severity sev,const std::string& msg, const char* file, int line);
+	static void OutputLog(Severity sev,const std::string &msg, const char* file, int line);
 	static bool CheckGLError(const char* file, int line);
 };
 
