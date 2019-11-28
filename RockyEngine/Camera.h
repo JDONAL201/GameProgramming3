@@ -3,7 +3,7 @@
 #include "Common.h"
 #include "Transform.h"
 #include "Application.h"
-enum CameraType { PERSPECTIVE, ORTHOGRAPHIC };
+enum CameraType { PERSPECTIVE, ORTHOGRAPHIC , FPS };
 class Camera
 {
 private:
@@ -19,16 +19,19 @@ private:
 	};
 	union
 	{
-		float m_ratio = 1280.f/ 720.f; //TODO: fix the macros so that we can use (float) WINDOW_W etc instead , accessible from one place
+		float m_ratio =1280.f / 720.f; //TODO: fix the macros so that we can use (float) WINDOW_W etc instead , accessible from one place
 		float m_left;
 	};
 	float m_right = 0;
 	float m_top = 0;
+
 	Camera();
 public:
+
 	Camera(Transform* parent, CameraType type = CameraType::PERSPECTIVE);
 	void Recalculate();
 	inline glm::mat4 Get() { return VP; }
+	void SetFPS();
 	void SetParentTransform(Transform* transform) {
 		m_parentTransform =
 			transform;
@@ -43,4 +46,5 @@ public:
 	//sets the orthographic projection
 	void SetProjOrtho(float left, float right, float bottom, float top,
 		float nearPlane, float farPlane);
+
 };

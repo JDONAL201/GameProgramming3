@@ -2,16 +2,15 @@
 #include "Application.h"
 #include "MeshRenderer.h"
 //#include "Quad.h"
-#include "Resources.h"
 #include "Common.h"
 #include "CameraComponent.h"
 #include "Input.h"
-
 Application* Application::m_application = nullptr;
 
 Application::Application()
 {
-
+	m_Resources = Resources::GetInstance();
+	m_EntityManager = EntityManager::GetInstance();
 }
 void Application::Init()
 {
@@ -73,35 +72,37 @@ void Application::OpenGlInit()
 
 
 	//turn on back face culling  TODO :  TURN BACK ON ON
-	//GL_ATTEMPT(glEnable(GL_CULL_FACE));
-	//GL_ATTEMPT(glCullFace(GL_BACK));
+	GL_ATTEMPT(glEnable(GL_CULL_FACE));
+	GL_ATTEMPT(glCullFace(GL_BACK));
 
 	glViewport(0, 0, (GLsizei)m_windowWidth, (GLsizei)m_windowHeight); // Set up the view port , 0 ,0 specifies the lower left of the viewport in pixels and then the window width and height are prov
 
 }
 void Application::GameInit()
 {
-	//loading all resources
-	Resources::GetInstance()->AddModel("PoliceCar.obj");
-	Resources::GetInstance()->AddTexture("Wood.jpg");
-	Resources::GetInstance()->AddShader((new ShaderProgram(ASSET_PATH + "simple_VERT.glsl", ASSET_PATH + "simple_FRAG.glsl")), "GenericShader");
+	LoadResources();
+	InitialiseEntities();
+}
+void Application::LoadResources()
+{
+	//Loading resources ( Models, Textures, Shaders
+	m_Resources->AddModel("Cube.obj");
+	m_Resources->AddTexture("Wood.jpg");
+	m_Resources->AddShader((new ShaderProgram(ASSET_PATH + "simple_VERT.glsl", ASSET_PATH + "simple_FRAG.glsl")), "GenericShader");
+}
+void Application::InitialiseEntities()
+{
+	// Creating Usable Entity with camera component
 
-	//Students should aim to have a better way of managing the scene for coursework
-	//TODO:::Students should aim to have a better way of managing the scene for the coursework
-	m_entities.push_back(new Entity());
-	m_entities.at(0)->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("PoliceCar.obj"), Resources::GetInstance()->GetShader("GenericShader"), Resources::GetInstance()->GetTexture("Wood.jpg")));
-
-	//m_entities.at(0)->AddComponent(new MeshRenderer(new Mesh(Quad::quadVertices, Quad::quadIndices), new ShaderProgram(ASSET_PATH + "simple_VERT.glsl", ASSET_PATH + "simple_FRAG.glsl"), new Texture(ASSET_PATH + "Wood.jpg"))); //TODO:: CHANGE PATH SETTINGS
-	m_entities.at(0)->GetTransform()->SetPosition(glm::vec3((80.0f, 1220.0f, -180.0f)));
-	m_entities.at(0)->GetTransform()->SetScale(glm::vec3(0.1f, 0.1f, 0.1f));
-	
-	m_entities.push_back(new Entity());
+	FPSPlayer = m_EntityManager->CreateEntity("FPSPlayer");
 	CameraComponent* camComp = new CameraComponent();
-	m_entities.at(1)->AddComponent(camComp);
-	camComp->Start();
-	
-	//MeshRenderer* testMeshGetComponent = m_entities.at(0)->GetComponent<MeshRenderer>();
+	FPSPlayer->AddComponent(camComp);
+	camComp->Start(CameraType::FPS);
 
+	cube = m_EntityManager->CreateEntity("CubeEntity");
+	cube->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Cube.obj"), Resources::GetInstance()->GetShader("GenericShader"), Resources::GetInstance()->GetTexture("Wood.jpg")));
+	cube->GetTransform()->SetPosition(glm::vec3((0.0f, 0.0f, -10.0f)));
+	cube->GetTransform()->SetScale(glm::vec3(5.0f, 5.0f, 5.f));
 
 }
 void Application::Loop()
@@ -129,11 +130,25 @@ void Application::Loop()
 
 			case SDL_KEYDOWN:
 				INPUT->SetKey(event.key.keysym.sym, true);
-				LOG_DEBUG(std::to_string(event.key.keysym.sym) + "  DOWN");
+				//LOG_DEBUG(std::to_string(event.key.keysym.sym) + "  DOWN");
+				if (INPUT->GetKey(SDLK_f))
+				{
+					m_EntityManager->DisplayAllEntities();
+				}
+				if (INPUT->GetKey(SDLK_k))
+				{
+					m_EntityManager->Destroy(cube3,deltaTime,3.0f);
+				}
+				if (INPUT->GetKey(SDLK_j))
+				{
+					m_EntityManager->ReleaseEntities();
+				}
+
 				break;
 			case SDL_KEYUP:
 				INPUT->SetKey(event.key.keysym.sym, false);
-				LOG_DEBUG(std::to_string(event.key.keysym.sym) + "  UP");
+				//LOG_DEBUG(std::to_string(event.key.keysym.sym) + "  UP");
+		
 				break;
 			case SDL_MOUSEMOTION:
 				INPUT->MoveMouse(glm::ivec2(event.motion.xrel, event.motion.yrel));
@@ -141,9 +156,11 @@ void Application::Loop()
 			}
 		}
 
+		m_EntityManager->MovableEntity(FPSPlayer, deltaTime, 2.f);
+
 
 		auto currentTicks = std::chrono::high_resolution_clock::now();
-		float deltaTime = (float)std::chrono::duration_cast<std::chrono::microseconds>(currentTicks - previousTicks).count() / 100000;
+		deltaTime = (float)std::chrono::duration_cast<std::chrono::microseconds>(currentTicks - previousTicks).count() / 100000;
 		m_worldDeltaTime = deltaTime;
 		previousTicks = currentTicks;
 
@@ -162,13 +179,11 @@ void Application::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	m_mainCamera->Recalculate();
-
-	for (auto& a : m_entities)
+	
+	for (auto itr = m_EntityManager->m_entities.begin(); itr != m_EntityManager->m_entities.end(); itr++)
 	{
-		a->OnRender();
+		itr->second->OnRender();
 	}
-
-
 }
 void Application::SetCamera(Camera* camera)
 {
@@ -179,9 +194,9 @@ void Application::SetCamera(Camera* camera)
 }
 void Application::Update(float deltaTime)
 {
-	for (auto& a : m_entities)
+	for (auto itr = m_EntityManager->m_entities.begin(); itr != m_EntityManager->m_entities.end(); itr++)
 	{
-		a->OnUpdate(deltaTime);
+		itr->second->OnUpdate(deltaTime);
 	}
 }
 void Application::Quit()

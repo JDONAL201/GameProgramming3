@@ -9,7 +9,7 @@ void Model::Load()
 
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if there is no scene , of returned flags or no root node , error
 	{
-		//LOG_ERROR(importer.GetErrorString()); //log error
+		LOG_ERROR(importer.GetErrorString()); //log error
 		return;// return
 	}
 	processNode(scene->mRootNode, scene); // else process 
@@ -35,6 +35,7 @@ Mesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
 
 	std::vector<Vertex> vertices;
 	std::vector<int> indices;
+	std::vector<Texture> textures;
 
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
@@ -90,9 +91,9 @@ Mesh* Model::processMesh(aiMesh* mesh, const aiScene* scene)
 
 	return new Mesh(vertices, indices);
 }
-
 Model::Model(std::string path)
 {
 	m_directory = path;
 	Load();
 }
+

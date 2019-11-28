@@ -1,8 +1,10 @@
 #pragma once
 #include "pch.h"
 #include "Entity.h"
-#define WINDOW_W Application::GetInstance()->GetWindowWidth()
-#define WINDOW_H Application::GetInstance()->GetWindowHeight()
+#include "Resources.h"
+#include "EntityManager.h"
+#define WINDOW_W Application::Instance()->GetWindowWidth();
+#define WINDOW_H Application::Instance()->GetWindowHeight();
 
 class Camera; // forward declare
 
@@ -14,18 +16,13 @@ class Application
 {
 	
 private:
-	std::vector <Entity*> m_entities;
-	Camera* m_mainCamera = nullptr;
-
-	static Application* m_application; 
-	SDL_Window* m_window = nullptr; 
-	SDL_GLContext m_glContext = nullptr; 
+	Application();
+	float deltaTime;
 	int m_windowWidth = 1280;
 	int m_windowHeight = 720;
-	ApplicationState m_appState = ApplicationState::INITILISING;
 	float m_worldDeltaTime = 0.f;
 
-	Application();
+	
 	void Init();
 	void OpenGlInit();
 	void Loop();
@@ -33,6 +30,21 @@ private:
 	void Update(float deltaTime);
 	void Render();
 	void SwapBuffer();
+	void InitialiseEntities();
+	void LoadResources();
+
+
+	ApplicationState m_appState = ApplicationState::INITILISING;
+	SDL_Window* m_window = nullptr;
+	SDL_GLContext m_glContext = nullptr;
+	Camera* m_mainCamera = nullptr;
+	static Application* m_application;
+	EntityManager* m_EntityManager;
+	Resources* m_Resources;
+
+	Entity* FPSPlayer;
+	Entity* cube;
+	Entity* cube3;
 public:
 
 	~Application();

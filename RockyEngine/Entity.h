@@ -16,6 +16,8 @@
 		void OnUpdate(float deltaTime);
 		void OnRender();
 		Transform* GetTransform() { return m_transform; };
+
+		std::string m_tag =  "";
 };
 
 
@@ -49,3 +51,4 @@ T* Entity::GetComponent()
 	}
 	return nullptr;
 }
+

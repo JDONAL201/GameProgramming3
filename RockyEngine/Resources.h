@@ -4,6 +4,8 @@
 #include "Model.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
+#include "Entity.h"
+
 class Resources
 {
 private:
@@ -12,10 +14,14 @@ private:
 	std::unordered_map<std::string, ShaderProgram*> m_shaderPrograms;
 	std::unordered_map<std::string, Model*> m_models;
 	std::unordered_map<std::string, Texture*> m_textures;
+
+
 	static Resources* m_instance;
 	Resources();
+	~Resources();
 
 public:
+	
 	static Resources* GetInstance(); //singleton
 	//adds shader to the map , should be done at the start of application
 	void AddShader(ShaderProgram* shader, std::string name)
@@ -29,9 +35,11 @@ public:
 	void AddTexture(const std::string& directory);
 	void AddTexture(const std::string& name, Texture* t) { m_textures[name] = t; }
 
+
 	ShaderProgram* GetShader(const std::string& name);
 	Model* GetModel(const std::string& name);
 	Texture* GetTexture(const std::string& name);
+
 
 	//Deletes all the things!
 	void ReleaseResources();

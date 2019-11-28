@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Camera.h"
+
 Camera::Camera(Transform* parent, CameraType type)
 {
 	m_parentTransform = parent;
@@ -12,6 +13,10 @@ Camera::Camera(Transform* parent, CameraType type)
 		break;
 	case PERSPECTIVE:
 		SetProjPersp(m_fov, m_ratio, m_nearPlane, m_farPlane);
+		break;
+
+	case  FPS:
+		SetFPS();
 		break;
 	}
 }
@@ -26,10 +31,10 @@ void Camera::Recalculate()
 		VP = m_projMatrix * m_viewMatrix;
 	}
 }
-void Camera::SetProjPersp(float fov, float ratio, float nearPlane, float
-	farPlane)
+
+
+void Camera::SetProjPersp(float fov, float ratio, float nearPlane, float farPlane)
 {
-	m_type = CameraType::PERSPECTIVE;
 	m_nearPlane = nearPlane;
 	m_farPlane = farPlane;
 	m_fov = fov;
@@ -39,7 +44,6 @@ void Camera::SetProjPersp(float fov, float ratio, float nearPlane, float
 void Camera::SetProjOrtho(float left, float right, float bottom, float top,
 	float nearPlane, float farPlane)
 {
-	m_type = CameraType::ORTHOGRAPHIC; float m_nearPlane = nearPlane;
 	m_nearPlane = nearPlane;
 	m_farPlane = farPlane;
 	m_bottom = bottom;
@@ -49,3 +53,8 @@ void Camera::SetProjOrtho(float left, float right, float bottom, float top,
 	m_projMatrix = glm::ortho(left, right, bottom, top, nearPlane,
 		farPlane);
 }
+void Camera::SetFPS()
+{
+	SetProjPersp(m_fov, m_ratio, m_nearPlane, m_farPlane); // persepective for FPS ( FPS IS JUST MOVEMENT )
+}
+

@@ -33,6 +33,9 @@ void Logger::OutputLog(Severity sev, const std::string& msg, const char* file, i
 	case Severity::DEBUG:
 		log.insert(0, "\x1B[36m[LOG: DEBUG] ");
 		break;
+	
+	case Severity::RESOURCE:
+		log = "\x1B[39m" + msg;
 
 	}
 	std::cout << log << std::endl;

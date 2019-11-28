@@ -18,7 +18,6 @@ MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program, Texture* textur
 	m_model = model;
 	m_texture = texture;
 }
-
 void MeshRenderer::OnUpdate(float deltaTime)
 {
 	//LOG_DEBUG("I'm Updating!");
@@ -39,11 +38,12 @@ void MeshRenderer::OnRender()
 	GLuint location = glGetUniformLocation(m_program->Get(), "MVP");
 	glUniformMatrix4fv(location, 1, false, (const GLfloat*)glm::value_ptr(mvp));
 
-	glm::vec3 oColor = glm::vec3(0.f, 1.f, 0.f);
+	glm::vec3 oColor = glm::vec3(1.f, 1.f, 1.f);
 	location = glGetUniformLocation(m_program->Get(), "objectColor");
 	glUniform3f(location, oColor.x, oColor.y, oColor.z);
 	
-	m_texture->Bind();
+
+	m_texture->Bind(); //WORKING FOR ONLY ONE TEXTURE , use this is a revert TODO
 	for (Mesh* mesh : m_model->GetMeshes())
 	{
 		mesh->Bind();

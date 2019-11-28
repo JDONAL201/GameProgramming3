@@ -27,7 +27,6 @@ void Resources::AddModel(const std::string& directory)
 		LOG_INFO("Model Loaded from " + directory);
 	}
 }
-
 void Resources::AddTexture(const std::string& directory)
 {
 	if (m_textures.find(directory) == m_textures.end())
@@ -48,13 +47,29 @@ Texture* Resources::GetTexture(const std::string& name)
 {
 	return m_textures[name];
 }
+
+
 void Resources::ReleaseResources()
 {
 	//using an iterator patter to iterate through all elemenets 
 
 	for (auto iter = m_models.begin(); iter != m_models.end(); iter++)
+	{
 		delete iter->second;
+	}
+	for (auto iter = m_textures.begin(); iter != m_textures.end(); iter++)
+	{
+		delete iter->second;
+	}
 
+	for (auto iter = m_shaderPrograms.begin(); iter != m_shaderPrograms.end(); iter++)
+	{
+		delete iter->second;
+	}
 
 	//TODO: Release other resources properly like above? ^^
+};
+Resources::~Resources()
+{
+	ReleaseResources();
 }

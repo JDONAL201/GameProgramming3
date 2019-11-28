@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Entity.h"
+#include "EntityManager.h"
 Entity::Entity()
 {
 	m_transform = new Transform();
@@ -23,3 +24,4 @@ void Entity::OnRender()
 		c->OnRender();
 	}
 }
+

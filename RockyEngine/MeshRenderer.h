@@ -14,11 +14,13 @@ private:
 	Texture* m_texture;
 	Model* m_model;
 	ShaderProgram* m_program;
+
 public:
 	// Inherited via Component
 	//MeshRenderer(Mesh* mesh, ShaderProgram* program, Texture* texture);
 	MeshRenderer(Model* model, ShaderProgram* program, Texture* texture);
 	virtual void OnUpdate(float deltaTime) override;
 	virtual void OnRender() override;
+
 };
 
