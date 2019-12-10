@@ -15,10 +15,16 @@ private:
 	Model* m_model;
 	ShaderProgram* m_program;
 
+	std::vector<Texture*> textures;
+	std::vector<Mesh*> meshes;
+	std::vector<unsigned int> meshTexIds;
+
 public:
 	// Inherited via Component
 	//MeshRenderer(Mesh* mesh, ShaderProgram* program, Texture* texture);
 	MeshRenderer(Model* model, ShaderProgram* program, Texture* texture);
+	MeshRenderer(Model* model, ShaderProgram* program);
+	virtual void OnAttach() override;
 	virtual void OnUpdate(float deltaTime) override;
 	virtual void OnRender() override;
 

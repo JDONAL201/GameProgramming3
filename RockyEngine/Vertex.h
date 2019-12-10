@@ -17,12 +17,11 @@ struct Vertex
 	{
 		color = c;
 	}
-	Vertex(glm::vec3 p, glm::vec4 c, glm::vec2 t) : Vertex(p, c)
+	Vertex(glm::vec3 p, glm::vec4 c , glm::vec2 t) : Vertex(p, c)
 	{
 		texture = t;
 	}
-	Vertex(glm::vec3 p, glm::vec4 c, glm::vec2 t, glm::vec3 n) :
-		Vertex(p, c, t)
+	Vertex(glm::vec3 p ,glm::vec4 c, glm::vec2 t, glm::vec3 n) : Vertex(p, c ,t)
 	{
 		normal = n;
 	}

@@ -28,7 +28,6 @@ if (Logger::CheckGLError(__FILE__, __LINE__)) __debugbreak()
 #define CHECK_GL_ERROR()
 #endif
 
-// TODO: implement different log levels (use bitmasking??
 class Logger
 {
 private:

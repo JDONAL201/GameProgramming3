@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "EntityManager.h"
 #include "Input.h"
 
@@ -59,35 +60,61 @@ void EntityManager::ReleaseEntities()
 		delete iter->second;
 	}
 }
-void EntityManager::MovableEntity(Entity* m_entity, float deltaTime, float speed)
-{
-	if (m_transform == NULL)
-	{
-		m_transform = m_entity->GetTransform();
-	}
-
-	m_velocity = deltaTime * speed;
-
-	if (INPUT->GetKey(SDLK_w))
-	{
-		m_transform->SetPosition(m_transform->GetPosition() + m_transform->GetForward() * m_velocity);
-	}
-
-	if (INPUT->GetKey(SDLK_s))
-	{
-		m_transform->SetPosition(m_transform->GetPosition() - m_transform->GetForward() * m_velocity);
-	}
-
-	if (INPUT->GetKey(SDLK_a))
-	{
-		m_transform->SetPosition(m_transform->GetPosition() - m_transform->GetRight() * m_velocity);
-	}
-
-	if (INPUT->GetKey(SDLK_d))
-	{
-		m_transform->SetPosition(m_transform->GetPosition() + m_transform->GetRight() * m_velocity);
-	}
-}
+//void EntityManager::MovableEntity(Entity* m_entity, float deltaTime, float speed)
+//{
+//	if (m_transform == NULL)
+//	{
+//		m_transform = m_entity->GetTransform();
+//	}
+//
+//	m_velocity = deltaTime * speed;
+//
+//	if (INPUT->GetKey(SDLK_w))
+//	{
+//		m_transform->m_position += m_transform->m_forward * m_velocity;
+//	}
+//
+//	if (INPUT->GetKey(SDLK_s))
+//	{
+//		m_transform->m_position -= m_transform->m_forward * m_velocity;;
+//	}
+//
+//	if (INPUT->GetKey(SDLK_a))
+//	{
+//		m_transform->m_position -= m_transform->m_right * m_velocity;
+//	}
+//
+//	if (INPUT->GetKey(SDLK_d))
+//	{
+//		m_transform->m_position += m_transform->m_right * m_velocity;
+//	}
+//
+//
+//}
+//void EntityManager::Rotate(Entity* entity, double mouseX , double mouseY)
+//{
+//	mouseX *= rotSpeed; // multiply the amount to change by the rotation speed to turn smooth towards
+//	mouseY *= rotSpeed;
+//
+//	yaw += mouseX; // update the yaw to add the change in x
+//	pitch -= mouseY; // update the pitch to minus the change in y
+//
+//	if (pitch > 89.0f) // limit the pitch
+//	{
+//		pitch = 89.0f;
+//	}
+//	if (pitch < -89.0f) //limit the pitch
+//	{
+//		pitch = -89.0f;
+//	}
+//
+//	entity->GetTransform()->m_forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));  // update forward to be relative to the pitch and yaw.
+//	entity->GetTransform()->m_forward.y = sin(glm::radians(pitch));
+//	entity->GetTransform()->m_forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+//	entity->GetTransform()->m_forward = glm::normalize(entity->GetTransform()->m_forward); // normalise to obtain a unit vector in the forward direction
+//	entity->GetTransform()->m_right = glm::normalize(glm::cross(entity->GetTransform()->m_forward, entity->GetTransform()->m_worldUp));// find the right angle , so right is always relative to world up
+//	entity->GetTransform()->m_up = glm::normalize(glm::cross(entity->GetTransform()->m_right, entity->GetTransform()->m_forward));					// up can change thus why is not used instead of worldSpace up above which will always be up in the world.
+//}
 void EntityManager::Destroy(Entity* entity)
 {
 	for (auto iter = m_entities.begin(); iter != m_entities.end(); iter++)

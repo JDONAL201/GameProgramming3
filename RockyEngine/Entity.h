@@ -8,6 +8,7 @@
 	private:
 		std::vector <Component*> m_components;
 		Transform* m_transform = nullptr;
+
 	public:
 		Entity();
 		void AddComponent(Component* c);
@@ -36,7 +37,6 @@ void Entity::AddComponent()
 		LOG_WARNING("Can't add component, does not inherit from Component" );
 	}
 }
-//TODO:entity GetComponent function template goes HERE!
 template<class T>
 T* Entity::GetComponent()
 {
@@ -51,4 +51,6 @@ T* Entity::GetComponent()
 	}
 	return nullptr;
 }
+
+
 

@@ -4,12 +4,12 @@
 class Texture
 {
 private:
-	GLuint m_texture;
+	GLuint m_textureID;
 	std::string m_directory;
-
 public:
-	Texture(std::string path);
-	static GLuint Load(const std::string& directory);
+	Texture(const std::string& directory);
+	bool Load();
+	void ReleaseTexture();
 	void Bind();
 };
 

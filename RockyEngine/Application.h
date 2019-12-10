@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Resources.h"
 #include "EntityManager.h"
+//#include "SkyBox.h"
 #define WINDOW_W Application::Instance()->GetWindowWidth();
 #define WINDOW_H Application::Instance()->GetWindowHeight();
 
@@ -32,6 +33,11 @@ private:
 	void SwapBuffer();
 	void InitialiseEntities();
 	void LoadResources();
+	void ShadowPass();
+
+
+	bool InitPos = false;
+	float lastX, lastY;
 
 
 	ApplicationState m_appState = ApplicationState::INITILISING;
@@ -42,9 +48,6 @@ private:
 	EntityManager* m_EntityManager;
 	Resources* m_Resources;
 
-	Entity* FPSPlayer;
-	Entity* cube;
-	Entity* cube3;
 public:
 
 	~Application();
@@ -54,8 +57,8 @@ public:
 	inline int GetWindowHeight() { return m_windowHeight; }
 	inline int GetWindowWidth() { return m_windowWidth; }
 
+
 	inline Camera* GetCamera() { return m_mainCamera; }
 	void SetCamera(Camera* camera);
 
 };
-

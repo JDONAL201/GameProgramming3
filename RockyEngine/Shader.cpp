@@ -85,3 +85,4 @@ bool Shader::CheckForCompileErrors(const std::string& fileName)
 	}
 	return false;
 }
+

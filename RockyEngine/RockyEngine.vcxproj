@@ -75,7 +75,7 @@
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)dependencies\include\;$(SolutionDir)dependencies\include\bullet;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -83,7 +83,7 @@
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)dependencies\include\;$(SolutionDir)dependencies\include\bullet;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,7 +91,7 @@
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)dependencies\include\;$(SolutionDir)dependencies\include\bullet;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +99,7 @@
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)dependencies\include\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)dependencies\include\;$(SolutionDir)dependencies\include\bullet;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dependencies\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -115,11 +115,11 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
-xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
+xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -135,11 +135,11 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
-xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
+xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -159,11 +159,11 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
-xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
+xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -183,17 +183,24 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
-xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
+xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="BoxShape.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraComponent.cpp" />
+    <ClCompile Include="CapsuleShape.cpp" />
+    <ClCompile Include="CollisionShape.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ConeShape.cpp" />
+    <ClCompile Include="ControllerComponent.cpp" />
+    <ClCompile Include="CylinderShape.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -201,19 +208,29 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="RockyEngine.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
+    <ClCompile Include="SphereShape.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="BoxShape.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraComponent.h" />
+    <ClInclude Include="CapsuleShape.h" />
+    <ClInclude Include="CollisionShape.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ConeShape.h" />
+    <ClInclude Include="ControllerComponent.h" />
+    <ClInclude Include="CylinderShape.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Input.h" />
@@ -223,17 +240,21 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I</Command>
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="SphereShape.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assets\simple_FRAG.glsl" />
-    <None Include="..\assets\simple_VERT.glsl" />
+    <None Include="..\assets\shaders\simple_FRAG.glsl" />
+    <None Include="..\assets\shaders\simple_VERT.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

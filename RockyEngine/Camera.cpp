@@ -24,15 +24,10 @@ void Camera::Recalculate()
 {
 	if (m_parentTransform != nullptr)
 	{
-		m_viewMatrix = glm::lookAt(m_parentTransform->GetPosition(),
-			m_parentTransform->GetPosition() +
-			m_parentTransform->GetForward(),
-			m_parentTransform->GetUp());
+		m_viewMatrix = glm::lookAt(m_parentTransform->GetPosition(), m_parentTransform->GetPosition() + m_parentTransform->GetForward(), m_parentTransform->GetUp());
 		VP = m_projMatrix * m_viewMatrix;
 	}
 }
-
-
 void Camera::SetProjPersp(float fov, float ratio, float nearPlane, float farPlane)
 {
 	m_nearPlane = nearPlane;

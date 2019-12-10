@@ -39,8 +39,13 @@ void ShaderProgram::Link()
 
 void ShaderProgram::Use()
 {
-	//TODO:: Only bind program if it isnt already bound ( keep track of currently in use, if this is currently in use no need to )
+	if (m_activeProgram == m_program)
+	{
+		return;
+	}
+
 	glUseProgram(m_program);
+	m_activeProgram = m_program;
 }
 
 bool ShaderProgram::CheckForLinkErrors()
@@ -65,3 +70,34 @@ bool ShaderProgram::CheckForLinkErrors()
 	}
 	return false;
 }
+void ShaderProgram::SetUniformVec3(const std::string& name, const glm::vec3& value) const
+{
+	glUniform3fv(glGetUniformLocation(m_program, name.c_str()), 1, &value[0]);
+
+	if ((glGetUniformLocation(m_program, name.c_str()) == -1))
+	{
+		std::cerr << "Unable to load shader: " << name.c_str() << std::endl;
+		__debugbreak();
+	}
+}
+
+void ShaderProgram::SetUniformMat4(const std::string& name, const glm::mat4& mat) const
+{
+	glUniformMatrix4fv(glGetUniformLocation(m_program, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+
+	if ((glGetUniformLocation(m_program, name.c_str()) == -1))
+	{
+		std::cerr << "Unable to load shader: " << name.c_str() << std::endl;
+		__debugbreak();
+	}
+}
+void ShaderProgram::SetFloat(const std::string& name, float value) const
+{
+	glUniform1f(glGetUniformLocation(m_program, name.c_str()), value);
+}
+void ShaderProgram::SetUniformBoolean(const std::string& name, bool value)
+{
+	glUniform1i(glGetUniformLocation(m_program, name.c_str()), (int)value);
+
+}
+

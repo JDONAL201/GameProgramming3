@@ -25,6 +25,7 @@ private:
 	float m_right = 0;
 	float m_top = 0;
 
+
 	Camera();
 public:
 
@@ -47,4 +48,8 @@ public:
 	void SetProjOrtho(float left, float right, float bottom, float top,
 		float nearPlane, float farPlane);
 
+	//glm::vec3 forward = glm::vec3(0.f, 0.f, 1.0f);
+	//glm::vec3 worldUp = glm::vec3(0.f, 0.f, 0.f);
+	//glm::vec3 right = glm::vec3(1.f, 0.f, 0.f);
+	//glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
 };

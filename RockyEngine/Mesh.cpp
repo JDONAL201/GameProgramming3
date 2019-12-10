@@ -15,28 +15,31 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices)
 	
 	GL_ATTEMPT(glGenBuffers(1, &m_vbo));
 	GL_ATTEMPT(glBindBuffer(GL_ARRAY_BUFFER, m_vbo));
-	GL_ATTEMPT(glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) *
-	m_vertices.size(), m_vertices.data(), GL_STATIC_DRAW));
+	GL_ATTEMPT(glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * m_vertices.size(), &vertices[0], GL_STATIC_DRAW));
+	
+	
 	GL_ATTEMPT(glGenBuffers(1, &m_ebo));
 	GL_ATTEMPT(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo));
-	GL_ATTEMPT(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) *
-	m_indices.size(), m_indices.data(), GL_STATIC_DRAW));
+	GL_ATTEMPT(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * m_indices.size(), &indices[0], GL_STATIC_DRAW));
 	
 	//Set the IDs for the positions, color, uv and normals
-	SetUpAttributes(0, 3, GL_FLOAT, 0);
+	SetUpAttributes(0, 3, GL_FLOAT, 0); //pos
 
-	SetUpAttributes(1, 4, GL_FLOAT, sizeof(glm::vec3)); // takes in ID , the data type and how much of to skip 
+	SetUpAttributes(1, 4, GL_FLOAT, sizeof(glm::vec3)); // takes in ID , the data type and how much of to skip  / color
 
-	SetUpAttributes(2, 2, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4));
+	SetUpAttributes(2, 2, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4)); //uv
 
-	SetUpAttributes(3, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2));
+	SetUpAttributes(3, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2)); // normal
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	GL_ATTEMPT(glBindVertexArray(0));
 }
 
 void Mesh::SetUpAttributes(int index, int count, int type, size_t offset)
 {
+	GL_ATTEMPT(glVertexAttribPointer(index, count, type, GL_FALSE, sizeof(Vertex), (void**)offset));
 	GL_ATTEMPT(glEnableVertexAttribArray(index));
-	GL_ATTEMPT(glVertexAttribPointer(index, count, type, GL_FALSE,
-	sizeof(Vertex), (void**)offset));
 }
 
 void Mesh::Bind()
@@ -44,4 +47,8 @@ void Mesh::Bind()
 	// TODO: don't bind mesh if it has already been bound
 
 	GL_ATTEMPT(glBindVertexArray(m_vao));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
 }

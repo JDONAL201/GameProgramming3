@@ -7,11 +7,9 @@ glm::mat4 Transform::UpdateTransform()
 	glm::mat4 currentRotate = glm::mat4_cast(m_rotation);
 	m_transformMatrix = m_transformMatrix * currentRotate;
 	m_transformMatrix = scale(m_transformMatrix, m_scale);
-	m_forward = glm::normalize(glm::rotate(m_rotation, glm::vec3(0, 0,
-		-1)));
+	m_forward = glm::normalize(glm::rotate(m_rotation, glm::vec3(0, 0,-1)));
 	m_up = glm::normalize(glm::rotate(m_rotation, glm::vec3(0, 1, 0)));
-	m_right = glm::normalize(glm::rotate(m_rotation, glm::vec3(1, 0,
-		0)));
+	m_right = glm::normalize(glm::rotate(m_rotation, glm::vec3(1, 0,0)));
 	m_isDirty = false;
 	return m_transformMatrix;
 }

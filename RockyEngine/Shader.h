@@ -19,7 +19,5 @@ public:
 	GLuint LoadShaderFromFile(const std::string& fileName, SHADER_TYPE type);
 	bool CheckForCompileErrors(const std::string& fileName);
 
-
-
 };
 

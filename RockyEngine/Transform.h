@@ -18,7 +18,6 @@ private:
 
 
 public:
-
 	Transform();
 	Transform(glm::vec3 pos);
 	Transform(glm::vec3 pos, glm::quat rot);
@@ -51,7 +50,6 @@ public:
 		if (m_isDirty) return
 			UpdateTransform(); else return m_transformMatrix;
 	}
-	//setters
 	inline void SetPosition(glm::vec3 newPos)
 	{
 		m_isDirty = true;
