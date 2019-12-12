@@ -4,7 +4,7 @@ in vec4 vColor;
 in vec2 texCoords;
 in vec3 normal;
 in vec3 fragPosition;
-
+in vec4 lightSpacePosition;
 
 
 out vec4 fragColor;
@@ -25,12 +25,49 @@ struct Material
 	
 };
 uniform sampler2D m_texture;
+uniform sampler2D m_shadowMap;
 
 uniform Directional directional;
 uniform Material material;
 
 uniform vec3 viewPosition;
 uniform bool blinn;
+
+
+float CalculateShadowFactor()
+{
+	vec3 projCoords = lightSpacePosition.xyz / lightSpacePosition.w;
+	projCoords = (projCoords * 0.5) + 0.5;
+	
+	//float closest = texture(m_shadowMap, projCoords.xy).r;
+	float current = projCoords.z;
+	
+	vec3 nNormal = normalize(normal);
+	vec3 lightDirection = normalize(directional.direction);
+
+	float bias = max(0.01 * (1 - dot(nNormal,lightDirection)),0.0005);
+	//float shadow = current - bias > closest ? 1.0 : 0.0;
+	float shadow = 0.0;
+
+	vec2 texelSize = 1.0 / textureSize(m_shadowMap, 0);
+	for (int i = -1; i <= 1; ++i)
+	{
+		for (int j = -1; j <= 1; ++j)
+		{
+			float pcfDepth = texture(m_shadowMap, projCoords.xy + vec2(i, j) * texelSize).r;
+			shadow += current - bias > pcfDepth ? 1.0 : 0.0;
+		}
+	}
+
+	shadow /= 9.0;
+
+	if(projCoords.z >1.0)
+	{
+		shadow = 0.0;
+	}
+	return shadow;
+
+}
 
 void main()
 {
@@ -66,8 +103,7 @@ void main()
 		}
 	}
 	
-
-	fragColor = texture(m_texture,texCoords) * (ambient_Color + diffuse_Color + specular_Color);
+	fragColor = texture(m_texture,texCoords) * (ambient_Color + ( 1.0 - CalculateShadowFactor()) * (diffuse_Color + specular_Color));
 	
 	
 }

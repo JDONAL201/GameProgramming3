@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Application.h"
 #include "MeshRenderer.h"
-//#include "Quad.h"
 #include "Common.h"
 #include "CameraComponent.h"
 #include "Input.h"
@@ -13,12 +12,19 @@
 #include "ConeShape.h"
 #include "CylinderShape.h"
 #include "ControllerComponent.h";
+#include "SkyBox.h";
+#include "MousePicking.h"
+#include "DirectionalLight.h"
 
+glm::mat4 projection;
 
 CameraComponent* camComp;
 ControllerComponent* controller; //TODO GET RID OF THESE AT THE TOP 
-const unsigned int shadowWidth = 1024; //TODO CHANGE HOW GETS HEIGHT N WIDTH ?
-const unsigned int	shadowHeight = 1024;
+
+SkyBox skybox;
+ShaderProgram* BlinnPhongShader;
+ShaderProgram* ShadowShader;
+DirectionalLight* main_LightSource;
 
 Application* Application::m_application = nullptr;
 Application::Application()
@@ -48,12 +54,11 @@ void Application::Init()
 		LOG_ERROR("Window is nullptr");
 		exit(-1);
 	}
-	SDL_CaptureMouse(SDL_TRUE);
+	SDL_SetRelativeMouseMode(SDL_TRUE);
 	LOG_DEBUG("ROCKY ENGINE: INTIALISED");
 
 	OpenGlInit();
 	GameInit();
-
 }
 
 void Application::OpenGlInit()
@@ -80,7 +85,7 @@ void Application::OpenGlInit()
 	//set less or equal function for depth testing
 	GL_ATTEMPT(glDepthFunc(GL_LEQUAL));
 
-	//Enable blending //todo: come back to this , this is causing transparency 
+	////Enable blending //todo: come back to this , this is causing transparency 
 	//glEnable(GL_BLEND);
 	//GL_ATTEMPT(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
@@ -88,118 +93,47 @@ void Application::OpenGlInit()
 	GL_ATTEMPT(glCullFace(GL_BACK));
 
 	glViewport(0, 0, (GLsizei)m_windowWidth, (GLsizei)m_windowHeight); // Set up the view port , 0 ,0 specifies the lower left of the viewport in pixels and then the window width and height are prov
-
-	SDL_SetRelativeMouseMode(SDL_TRUE);
 }
 void Application::GameInit()
 {
 	LoadResources();
 	InitialiseEntities();
 
-	unsigned int m_fbo;
-	//TODO REMOVE THIS FROM HERE 
-	GL_ATTEMPT(glGenFramebuffers(1, &m_fbo));
-	//const unsigned int shadowWidth = 1024; //TODO CHANGE HOW GETS HEIGHT N WIDTH ?
-	//const unsigned int	shadowHeight = 1024;
 
-	unsigned int shadowMap;
-	GL_ATTEMPT(glGenTextures(1, &shadowMap));
-	GL_ATTEMPT(glBindTexture(GL_TEXTURE_2D, shadowMap));
-	GL_ATTEMPT(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowWidth, shadowHeight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
-	GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-	GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
-	GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
-	GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+	projection = Application::Instance()->GetCamera()->GetProj();
 
-	GL_ATTEMPT(glBindFramebuffer(GL_FRAMEBUFFER, m_fbo));
-	GL_ATTEMPT(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMap, 0));
-
-	GL_ATTEMPT(glDrawBuffer(GL_NONE));
-	GL_ATTEMPT(glReadBuffer(GL_NONE));//telling opengl that we are not using the color buffer
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 }
 void Application::LoadResources()
 {
 	//Loading resources ( Models, Textures, Shaders
-	//m_Resources->AddModel("error.obj", "");
+	m_Resources->AddModel("error.obj");
 	//m_Resources->AddModelWithMat("Robot and Plant.obj", "Clank//");
 	//m_Resources->AddModel("batman.obj", "folder//");
-	//m_Resources->AddModel("CHALLENGER71.obj", "folder3//");
+	m_Resources->AddModelWithMat("ship.fbx", "ship//");
 	m_Resources->AddModel("Cube.obj");
-	m_Resources->AddModelWithMat("Joker.obj" , "folder2//");
+	/*m_Resources->AddModelWithMat("Joker.obj", "folder2//");
+	m_Resources->AddModelWithMat("Joker.obj", "folder2//"); */
 	m_Resources->AddTexture("missing.png");
 	m_Resources->AddTexture("lava.png");
-	m_Resources->AddShader((new ShaderProgram(SHADER_PATH + "simple_VERT.glsl", SHADER_PATH + "simple_FRAG.glsl")), "GenericShader");
-	
-}
-void Application::ShadowPass()
-{
-	//////TODO: The rendering of the framebuffer 
-	////glViewport(0, 0, shadowWidth, shadowHeight);
-	////glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);
-	////glClear(GL_DEPTH_BUFFER_BIT);
-	////
+	m_Resources->AddTexture("floor.jpg");
 
-}
-void Application::InitialiseEntities()
-{
-	// Creating Usable Entity with camera component
-	Entity* SceneEntity = m_EntityManager->CreateEntity("SceneEntity");
-	SceneEntity->GetTransform()->SetPosition(glm::vec3(0.0f, 0.0f, 0.f));
-	SceneEntity->AddComponent(new CameraComponent());
-	SceneEntity->AddComponent(new ControllerComponent());
-	controller = SceneEntity->GetComponent<ControllerComponent>();
+	m_Resources->AddShader((new ShaderProgram(SHADER_PATH + "simple_VERT.glsl", SHADER_PATH + "simple_FRAG.glsl")), "BlinnPhong");
+	m_Resources->AddShader((new ShaderProgram(SHADER_PATH + "skybox_VERT.glsl", SHADER_PATH + "skybox_FRAG.glsl")), "Skybox");
+	m_Resources->AddShader((new ShaderProgram(SHADER_PATH + "shadow_VERT.glsl", SHADER_PATH + "shadow_FRAG.glsl")), "shadow");
 
-	Entity* cube = m_EntityManager->CreateEntity("CubeEntity");
-	cube->AddComponent(new MeshRenderer(m_Resources->GetModel("Cube.obj"), m_Resources->GetShader("GenericShader"))); //IF NO TEXTURE OR MATERIAL , DEFAULT WILL BE APPLIED
-	cube->GetTransform()->SetPosition(glm::vec3(0.0f, -10.0f, 20.0f));
-	cube->AddComponent<RigidBody>();
-	cube->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(100.f, 1.f, 100.f)));
-	cube->GetComponent<RigidBody>()->Get()->setMassProps(0, btVector3());
-	cube->GetTransform()->SetScale(glm::vec3(100.f, 1.f, 100.f));
+	//enviro_map_faces.push_back(TEXTURE_PATH + "cubemaps//default//front.tga");
+	//enviro_map_faces.push_back(TEXTURE_PATH + "cubemaps//default//back.tga");
+	//enviro_map_faces.push_back(TEXTURE_PATH + "cubemaps//default//up.tga");
+	//enviro_map_faces.push_back(TEXTURE_PATH + "cubemaps//default//down.tga");
+	//enviro_map_faces.push_back(TEXTURE_PATH + "cubemaps//default//right.tga");
+	//enviro_map_faces.push_back(TEXTURE_PATH + "cubemaps//default//left.tga");
 
-	Entity* Sphere = m_EntityManager->CreateEntity("Cube");
-	Sphere->AddComponent(new MeshRenderer(m_Resources->GetModel("Cube.obj"), m_Resources->GetShader("GenericShader"),m_Resources->GetTexture("lava.png"))); 
-	Sphere->GetTransform()->SetPosition(glm::vec3(0.0f, 0.0f, -20.0f));
-	//Sphere->AddComponent<RigidBody>();
-	//Sphere->GetComponent<RigidBody>()->Init(new SphereShape(5.f));
-	Sphere->GetTransform()->SetScale(glm::vec3(10.f, 10.f, 10.f));
+	//skybox = SkyBox(enviro_map_faces);
+	BlinnPhongShader = m_Resources->GetShader("BlinnPhong");
+	ShadowShader = m_Resources->GetShader("shadow");
 
-
-	//Entity* Clank = m_EntityManager->CreateEntity("Robot");
-	//Clank->AddComponent(new MeshRenderer(m_Resources->GetModel("Robot and Plant.obj"), m_Resources->GetShader("GenericShader")));
-	//Clank->AddComponent<RigidBody>();
-	//Clank->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(100.f, 1.f, 100.f)));
-	//Clank->GetComponent<RigidBody>()->Get()->setMassProps(0, btVector3());
-	//Clank->GetTransform()->SetPosition(glm::vec3((0.0f, 0.0f, 0.0f)));
-	//Clank->GetTransform()->SetRotation(glm::quat(0.f, 0.f, 180.f, 0.f));
-	//Clank->GetTransform()->SetScale(glm::vec3(0.05f, 0.05f, 0.05f));
-
-	//Entity* BatmanBuilding = m_EntityManager->CreateEntity("BatBuilding");
-	//BatmanBuilding->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("batman.obj"), Resources::GetInstance()->GetShader("GenericShader")));
-	//BatmanBuilding->GetTransform()->SetPosition(glm::vec3(80.0f, 0.0f, 0.f));
-	//BatmanBuilding->GetTransform()->SetScale(glm::vec3(1.0f, 1.0f, 1.0f));
-	//
-	//Entity* Joker = m_EntityManager->CreateEntity("Joker");
-	//Joker->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Joker.obj"), Resources::GetInstance()->GetShader("GenericShader") , m_Resources->GetTexture("lava.png")));
-	//Joker->GetTransform()->SetPosition(glm::vec3(-50.0f, 0.0f, -50.f));
-	//Joker->GetTransform()->SetRotation(glm::quat(270.f, 0.f, 0.f, 0.f));
-	//Joker->GetTransform()->SetScale(glm::vec3(0.2f, 0.2f, 0.2f));
-	//Joker->AddComponent<RigidBody>();
-	//Joker->GetComponent<RigidBody>()->Init(new BoxShape(Joker->GetTransform()->GetScale()));
-
-	for (int i = 0; i < 100; i++)
-	{
-		Entity* a = m_EntityManager->CreateEntity("cube" + std::to_string(i));
-		a->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Cube.obj"), Resources::GetInstance()->GetShader("GenericShader"), m_Resources->GetTexture("lava.png")));
-		a->GetTransform()->SetPosition(glm::vec3(-40, 5.f * i, 40.f));
-		a->GetTransform()->SetScale(glm::vec3(5, 5, 5));
-		a->AddComponent<RigidBody>();
-		a->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(5.f, 5.f, 5.f)));
-	}
-	
+	main_LightSource = new DirectionalLight(4096, 4096,glm::vec3(1.0f, 1.0f, 1.0f), 0.1f, 0.6f, glm::vec3(0.0f, -10.0f, -15.0f),1.0f,32); //32 multiple of 2
 }
 void Application::Loop()
 {
@@ -233,20 +167,21 @@ void Application::Loop()
 				}
 				if (INPUT->GetKey(SDLK_k))
 				{
-					//m_EntityManager->Destroy(Clank,deltaTime,3.0f);
+					//m_EntityManager->Destroy(m_EntityManager->GetEntity("cube0"),deltaTime,5.0f);
 				}
-				if (INPUT->GetKey(SDLK_UP))
+				if (INPUT->GetKey(SDLK_LEFT))
 				{
+					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 					//Clank->GetComponent<RigidBody>()->AddForce(glm::vec3(0,0,-1), Clank->GetTransform()->GetPosition(),10.f);
 				}
 				if (INPUT->GetKey(SDLK_RIGHT))
 				{
-					std::cout << "HELLO" << std::endl;
+					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+				
 					//Clank->GetComponent<RigidBody>()->AddTorque(Clank->GetTransform()->GetRight(), 100.f);
 				}
 				if (INPUT->GetKey(SDLK_j))
 				{
-					m_EntityManager->ReleaseEntities();
 				}
 
 				if (INPUT->GetKey(SDLK_ESCAPE))
@@ -254,24 +189,17 @@ void Application::Loop()
 					m_appState = ApplicationState::QUITING;
 				}
 
+				if (INPUT->GetKey(SDLK_LSHIFT))
+				{
+				}
 				break;
+			
 			case SDL_KEYUP:
 				INPUT->SetKey(event.key.keysym.sym, false);
-				//LOG_DEBUG(std::to_string(event.key.keysym.sym) + "  UP");
-		
 				break;
 			case SDL_MOUSEMOTION:
 				INPUT->MoveMouse(glm::ivec2(event.motion.xrel, event.motion.yrel));
 				m_EntityManager->GetEntity("SceneEntity")->GetComponent<ControllerComponent>()->SetMouseMotion();
-			/*	if (InitPos) 
-				{
-					lastX = event.motion.xrel;
-					lastY = event.motion.yrel;
-				}
-				float x = event.motion.xrel - lastX;
-				float y = event.motion.yrel - lastY;
-				controller->SetMouseMotion(x, y);*/
-				//m_EntityManager->Rotate(SceneEntity, changeInX, changeInY);
 				break;
 			}
 
@@ -282,10 +210,18 @@ void Application::Loop()
 		previousTicks = currentTicks;
 
 		Physics::GetInstance()->Update(deltaTime);
-		
 		Update(deltaTime);
+		
+		////////////////
+		m_mainCamera->Recalculate();
+		glm::mat4 view = Application::Instance()->GetCamera()->GetView();
+		glm::vec3 viewPosition = Application::Instance()->GetCamera()->GetParentTransform()->GetPosition();
 
-		Render();
+	
+		ShadowPass();
+		RenderPass(projection, view, viewPosition);
+		
+		glUseProgram(0);
 		SwapBuffer();
 	}
 }
@@ -293,20 +229,78 @@ void Application::SwapBuffer()
 {
 	SDL_GL_SwapWindow(m_window);
 }
-void Application::Render()
+void Application::ShadowPass()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_mainCamera->Recalculate();
+	ShadowShader->Use();
+	glViewport(0, 0, main_LightSource->GetShadowMap()->GetShadowWidth(), main_LightSource->GetShadowMap()->GetShadowHeight());
+	main_LightSource->GetShadowMap()->Write();
+	glClear(GL_DEPTH_BUFFER_BIT);
 
-	//m_EntityManager->GetEntity("Cube")->OnRender();
+
+	ShadowShader->SetUniformMat4("lightSpaceTransform", main_LightSource->CalculateLightTransform());
+
+	//Render();
 
 	for (auto itr = m_EntityManager->m_entities.begin(); itr != m_EntityManager->m_entities.end(); itr++)
 	{
+		glm::mat4 model = itr->second->GetTransform()->GetTransformationMatrix();
+		ShadowShader->SetUniformMat4("model", model);
 		itr->second->OnRender();
 	}
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 }
+void Application::RenderPass(glm::mat4 projectionMatrix, glm::mat4 viewMatrix,glm::vec3 viewPos)
+{
+
+	BlinnPhongShader->Use();
+
+
+	glViewport(0, 0, m_windowWidth, m_windowHeight);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+	BlinnPhongShader->SetUniformBoolean("blinn", true);
+	BlinnPhongShader->SetUniformMat4("proj", projectionMatrix);
+	BlinnPhongShader->SetUniformMat4("view", viewMatrix);
+	BlinnPhongShader->SetUniformVec3("viewPosition", glm::vec3(viewPos.x, viewPos.y, viewPos.z));
+
+	BlinnPhongShader->SetDirectionalLight(main_LightSource);
+
+	BlinnPhongShader->SetUniformMat4("lightSpaceTransform", main_LightSource->CalculateLightTransform());
+
+	main_LightSource->GetShadowMap()->Read(GL_TEXTURE1);
+	BlinnPhongShader->SetUniformBoolean("m_texture", 0);
+	BlinnPhongShader->SetUniformBoolean("m_shadowMap", 1);
+	//skybox.RenderSkyBox(Resources::GetInstance()->GetShader("Skybox"));
+
+
+	/*Render();*/
+
+
+	for (auto itr = m_EntityManager->m_entities.begin(); itr != m_EntityManager->m_entities.end(); itr++)
+	{
+		glm::mat4 model = itr->second->GetTransform()->GetTransformationMatrix();
+		BlinnPhongShader->SetUniformMat4("model", model);
+		itr->second->OnRender();
+	}
+
+}
+//void Application::Render()
+//{
+//	
+//	
+//	for (auto itr = m_EntityManager->m_entities.begin(); itr != m_EntityManager->m_entities.end(); itr++)
+//	{
+//		glm::mat4 model = itr->second->GetTransform()->GetTransformationMatrix();
+//		m_program->SetUniformMat4("model", model);
+//		itr->second->OnRender();
+//	}
+//
+//}
 void Application::SetCamera(Camera* camera)
 {
 	if (camera != nullptr)
@@ -351,4 +345,81 @@ void Application::Run()
 	Init();
 	Loop();
 	Quit();
+}
+void Application::InitialiseEntities()
+{
+	// Creating Usable Entity with camera component
+	Entity* SceneEntity = m_EntityManager->CreateEntity("SceneEntity");
+	SceneEntity->GetTransform()->SetPosition(glm::vec3(0.0f, 0.0f, 0.f));
+	SceneEntity->AddComponent(new CameraComponent());
+	SceneEntity->AddComponent(new ControllerComponent());
+	controller = SceneEntity->GetComponent<ControllerComponent>();
+	//SceneEntity->AddComponent<RigidBody>();
+	//SceneEntity->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(8.f,8.f,8.f)));
+
+
+
+
+	Entity* cube = m_EntityManager->CreateEntity("CubeEntity");
+	cube->AddComponent(new MeshRenderer(m_Resources->GetModel("Cube.obj"), m_Resources->GetShader("BlinnPhong"), m_Resources->GetTexture("floor.jpg"))); //IF NO TEXTURE OR MATERIAL , DEFAULT WILL BE APPLIED
+	cube->GetTransform()->SetPosition(glm::vec3(0.0f, -1.0f, -100.0f));
+	cube->AddComponent<RigidBody>();
+	cube->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(100.f, 0.f, 100.f)));
+	cube->GetComponent<RigidBody>()->Get()->setMassProps(0, btVector3());
+	cube->GetTransform()->SetScale(glm::vec3(100.f, 0.5f, 100.f));
+
+	Entity* cube3 = m_EntityManager->CreateEntity("TheCube");
+	cube3->AddComponent(new MeshRenderer(m_Resources->GetModel("Cube.obj"), m_Resources->GetShader("BlinnPhong"), m_Resources->GetTexture("floor.jpg"))); //IF NO TEXTURE OR MATERIAL , DEFAULT WILL BE APPLIED
+	cube3->GetTransform()->SetPosition(glm::vec3(0.0f, 10.0f, -50.0f));
+	cube3->GetTransform()->SetScale(glm::vec3(5.f, 5.f, 5.f));
+	//cube3->AddComponent<RigidBody>();
+	//cube3->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(5.f, 5.f, 5.f)));
+
+	Entity* Sphere = m_EntityManager->CreateEntity("Cube");
+	Sphere->AddComponent(new MeshRenderer(m_Resources->GetModel("ship.fbx"), m_Resources->GetShader("BlinnPhong")));
+	Sphere->GetTransform()->SetPosition(glm::vec3(0.0f, 20.0f, -100.0f));
+	Sphere->GetTransform()->RotateEulerAxis(90.f, glm::vec3(1.f, 0.f, 0.f));
+	//Sphere->AddComponent<RigidBody>();
+	//Sphere->GetComponent<RigidBody>()->Init(new SphereShape(5.f));
+	Sphere->GetTransform()->SetScale(glm::vec3(10.f, 10.f, 10.f));
+
+
+	//Entity* newEntity = m_EntityManager->CreateEntity("new");
+	//newEntity->AddComponent(new MeshRenderer(new Mesh(cubeVertices, cubeIndices), m_Resources->GetShader("BlinnPhong"), m_Resources->GetTexture("floor.jpg")));
+	//newEntity->GetTransform()->SetPosition(glm::vec3(0.0f, 20.0f, -20.0f));
+	//newEntity ->GetTransform()->SetScale(glm::vec3(15.f, 15.f, 15.f));
+
+
+	//Entity* Clank = m_EntityManager->CreateEntity("Robot");
+	//Clank->AddComponent(new MeshRenderer(m_Resources->GetModel("Robot and Plant.obj"), m_Resources->GetShader("")));
+	//Clank->AddComponent<RigidBody>();
+	//Clank->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(100.f, 1.f, 100.f)));
+	//Clank->GetComponent<RigidBody>()->Get()->setMassProps(0, btVector3());
+	//Clank->GetTransform()->SetPosition(glm::vec3((0.0f, 0.0f, 0.0f)));
+	//Clank->GetTransform()->SetRotation(glm::quat(0.f, 0.f, 180.f, 0.f));
+	//Clank->GetTransform()->SetScale(glm::vec3(0.05f, 0.05f, 0.05f));
+
+	//Entity* BatmanBuilding = m_EntityManager->CreateEntity("BatBuilding");
+	//BatmanBuilding->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("batman.obj"), Resources::GetInstance()->GetShader("BlinnPhong")));
+	//BatmanBuilding->GetTransform()->SetPosition(glm::vec3(80.0f, 0.0f, 0.f));
+	//BatmanBuilding->GetTransform()->SetScale(glm::vec3(1.0f, 1.0f, 1.0f));
+	//
+	//Entity* Joker = m_EntityManager->CreateEntity("Joker");
+	//Joker->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Joker.obj"), Resources::GetInstance()->GetShader("BlinnPhong")));
+	//Joker->GetTransform()->SetPosition(glm::vec3(-50.0f, 0.0f, -50.f));
+	//Joker->GetTransform()->SetRotation(glm::quat(270.f, 0.f, 0.f, 0.f));
+	//Joker->GetTransform()->SetScale(glm::vec3(0.2f, 0.2f, 0.2f));
+	//Joker->AddComponent<RigidBody>();
+	//Joker->GetComponent<RigidBody>()->Init(new BoxShape(Joker->GetTransform()->GetScale()));
+
+	for (int i = 0; i < 100; i++)
+	{
+		Entity* a = m_EntityManager->CreateEntity("cube" + std::to_string(i));
+		a->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Cube.obj"), Resources::GetInstance()->GetShader("BlinnPhong"), m_Resources->GetTexture("lava.png")));
+		a->GetTransform()->SetPosition(glm::vec3(-40, 5.f * i, -100.f));
+		a->GetTransform()->SetScale(glm::vec3(5, 5, 5));
+		a->AddComponent<RigidBody>();
+		a->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(5.f, 5.f, 5.f)));
+	}
+
 }

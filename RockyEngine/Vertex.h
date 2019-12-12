@@ -7,6 +7,8 @@ struct Vertex
 	glm::vec4 color = glm::vec4(0, 0, 0, 0);
 	glm::vec2 texture = glm::vec2(0, 0);
 	glm::vec3 normal = glm::vec3(0, 0, 0);
+	//glm::vec3 tangent = glm::vec3(0, 0, 0);
+	//glm::vec3 bitangent = glm::vec3(0, 0, 0);
 	Vertex() {}
 
 	Vertex(glm::vec3 p)
@@ -25,4 +27,13 @@ struct Vertex
 	{
 		normal = n;
 	}
+	//Vertex(glm::vec3 p, glm::vec4 c, glm::vec2 t, glm::vec3 n, glm::vec3 ta) :Vertex(p, c, t,n)
+	//{
+	//	tangent = ta;
+	//}
+	//Vertex(glm::vec3 p, glm::vec4 c, glm::vec2 t, glm::vec3 n, glm::vec3 ta, glm::vec3 bt) :Vertex(p, c, t, n, ta)
+	//{
+	//	bitangent = bt;
+	//}
 };
+

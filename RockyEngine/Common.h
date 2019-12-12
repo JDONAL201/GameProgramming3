@@ -1,5 +1,6 @@
 #pragma once
 #include "Logger.h"
+
 const std::string ASSET_PATH = "assets//";
 const std::string MODEL_PATH = "assets//Models//";
 const std::string TEXTURE_PATH = "assets//textures//";

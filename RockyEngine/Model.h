@@ -22,7 +22,6 @@ private:
 	void processMaterials(const aiScene* scene);
 
 public:
-	void RenderModel();
 	std::vector<Mesh*> GetMeshes() { return m_meshes; }
 	std::vector<Texture*> GetTextures() { return m_textures; }
 	std::vector<unsigned int> GetMeshTexIds(){ return m_meshToTexID; }

@@ -9,10 +9,18 @@
 MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program)
 {
 	m_program = program;
+	m_default = program;
 	m_model = model;
 	m_texture = nullptr;
 }
-MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program, Texture* texture) 
+MeshRenderer::MeshRenderer(Mesh* mesh, ShaderProgram* program, Texture* texture)
+{
+	m_model = nullptr;
+	m_mesh = mesh;
+	m_program = program;
+	m_texture = texture;
+}
+MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program, Texture* texture)
 {
 	m_program = program;
 	m_model = model;
@@ -20,7 +28,19 @@ MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program, Texture* textur
 }
 void MeshRenderer::OnAttach()
 {
-	meshes = m_model->GetMeshes();
+	if (m_model == nullptr)
+	{
+		if (m_texture == nullptr)
+		{
+			m_texture = Resources::GetInstance()->GetTexture("missing.png");
+			LOG_WARNING("Texture nullptr, default assigned");
+		}
+
+		return;
+	}
+	else
+	{
+		meshes = m_model->GetMeshes();
 
 		if (m_model->hasMaterials)
 		{
@@ -35,6 +55,7 @@ void MeshRenderer::OnAttach()
 				LOG_WARNING("Texture nullptr, default assigned");
 			}
 		}
+	}
 }
 void MeshRenderer::OnUpdate(float deltaTime)
 {
@@ -42,48 +63,38 @@ void MeshRenderer::OnUpdate(float deltaTime)
 }
 void MeshRenderer::OnRender()
 {
-	m_program->Use();
-
-	//set uniforms here!
-	glm::mat4 model = m_entity->GetTransform()->GetTransformationMatrix();
-	glm::mat4 view = Application::Instance()->GetCamera()->GetView();
-	glm::mat4 projection = Application::Instance()->GetCamera()->GetProj();
-	glm::vec3 viewPosition = Application::Instance()->GetCamera()->GetParentTransform()->GetPosition();
-
-	m_program->SetUniformMat4("proj", projection);
-	m_program->SetUniformMat4("view", view);
-	m_program->SetUniformMat4("model", model);
-	m_program->SetUniformVec3("viewPosition",glm::vec3(viewPosition.x, viewPosition.y, viewPosition.z));
-
-	m_program->SetUniformVec3("directional.color", glm::vec3(1.0f, 1.f, 1.f));
-	m_program->SetFloat("directional.ambient_Intensity", 0.1f);
-	m_program->SetUniformVec3("directional.direction", glm::vec3(0.f, -1.f, 0.f));
-	m_program->SetFloat("directional.diffuse_Intensity", 0.8f);
-	m_program->SetFloat("material.specular_Intensity", 1.0f);
-	m_program->SetFloat("material.shine_Strength", 32);
-	m_program->SetUniformBoolean("blinn", true);
-
+	//glm::mat4 model = m_entity->GetTransform()->GetTransformationMatrix();
+	//m_program->SetUniformMat4("model", model);
 	
-	if (m_model->hasMaterials == true)
+	if (m_model != nullptr)
 	{
-		for (unsigned int i = 0; i < meshes.size(); i++)
+		if (m_model->hasMaterials == true)
 		{
-			unsigned int materialInd = meshTexIds[i];
-
-			if (materialInd < textures.size() && textures[materialInd])
+			for (unsigned int i = 0; i < meshes.size(); i++)
 			{
-				textures[materialInd]->Bind();
-			}
+				unsigned int materialInd = meshTexIds[i];
 
-			meshes[i]->Bind();
+				if (materialInd < textures.size() && textures[materialInd])
+				{
+					textures[materialInd]->Bind();
+				}
+
+				meshes[i]->Bind();
+			}
+		}
+		else
+		{
+			for (unsigned int i = 0; i < meshes.size(); i++)
+			{
+				m_texture->Bind();
+				meshes[i]->Bind();
+			}
 		}
 	}
 	else
 	{
-		for (unsigned int i = 0; i < meshes.size(); i++)
-		{
-			m_texture->Bind();
-			meshes[i]->Bind();
-		}
+		m_texture->Bind();
+		m_mesh->Bind();
 	}
+	
 }

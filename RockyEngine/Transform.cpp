@@ -24,8 +24,7 @@ Transform::Transform(glm::vec3 pos, glm::quat rot) : Transform(pos)
 {
 	m_rotation = rot;
 }
-Transform::Transform(glm::vec3 pos, glm::quat rot, glm::vec3 scale) :
-	Transform(pos, rot)
+Transform::Transform(glm::vec3 pos, glm::quat rot, glm::vec3 scale) :Transform(pos, rot)
 {
 	m_scale = scale;
 }

@@ -1,13 +1,15 @@
-﻿  ControllerComponent.cpp
+﻿  Application.cpp
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(15,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
   RockyEngine.vcxproj -> C:\Users\james\Desktop\GP3\RockyEngine\bin\x64\Debug\RockyEngine_x64.exe
-  C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp.dll
+  C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp-vc140-mt.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp.exe
-  C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp_viewer.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\glew32.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\SDL2.dll
-  5 File(s) copied
+  4 File(s) copied
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\batman.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\batman.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\BMW i8.fbx
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cube.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.obj
@@ -15,42 +17,34 @@
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Joker.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Robot and Plant.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Robot and Plant.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\ship.fbx
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sphere.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\x-wing.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\x-wing.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\shadow_FRAG.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\shadow_VERT.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\simple_FRAG.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\simple_VERT.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\skybox_FRAG.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\skybox_VERT.glsl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\floor.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\lava.png
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\missing.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\batmobile\lambert3SG_albedo.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\batmobile\lambert3SG_AO.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\batmobile\lambert3SG_metallic.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\batmobile\lambert3SG_normal.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\batmobile\lambert3SG_roughness.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\body.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\body.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\bodylee.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\bodylee.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\checker.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\checker.gif
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\fuel.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\fuel.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\interior.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\lamp.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\lamp.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\lampx.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\lampx.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\plate.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\tyre.bmp
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\charger\tyre.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_ao.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_basecolor.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_cavity.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_emission.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_metallic.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_normal.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_rougness.png
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Alpha .jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Alpha02.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Ground01.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Robot01.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\back.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\down.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\front.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\left.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\right.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\up.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder\batman.png
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder\batman_emission.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder2\Joker_Alpha.jpg
@@ -120,19 +114,13 @@
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW FRONT MASK.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW FRONT.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\BIBBUMP.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\ENGINE.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\ENGINE2.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\FRC.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\LASER.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\PLATEOX2.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\REFMAP.gif
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\WINGBACK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\WINGDOWN.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\WINGFRON.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\WINGTOP.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\XSIDE.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\XWBACK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\XWDOWN.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\x-wing\XWTOP.tga
-  129 File(s) copied
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\New folder\car_bmw_i8_df.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\New folder\Universal Wheel.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship Ao_Blender.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_color_4.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_curvature.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_emi.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_metalness.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_nmap_2_Tris.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_rough.jpg
+  116 File(s) copied

@@ -32,6 +32,14 @@ void ShaderProgram::Link()
 	CheckForLinkErrors();
 	CHECK_GL_ERROR();
 
+
+	u_ambientColor = GetUniformLocation("directional.color");
+	u_ambientIntensity = GetUniformLocation("directional.ambient_Intensity");
+	u_diffIntensity = GetUniformLocation("directional.diffuse_Intensity");
+	u_direction = GetUniformLocation("directional.direction");
+	u_specular = GetUniformLocation("material.specular_Intensity");
+	u_shine = GetUniformLocation("material.shine_Strength");
+	u_model = GetUniformLocation("model");
 	//once linked no longer needed
 	delete m_vertexShader;
 	delete m_fragmentShader;
@@ -39,10 +47,10 @@ void ShaderProgram::Link()
 
 void ShaderProgram::Use()
 {
-	if (m_activeProgram == m_program)
-	{
-		return;
-	}
+	//if (m_activeProgram == m_program)
+	//{
+	//	return;
+	//}
 
 	glUseProgram(m_program);
 	m_activeProgram = m_program;
@@ -100,4 +108,17 @@ void ShaderProgram::SetUniformBoolean(const std::string& name, bool value)
 	glUniform1i(glGetUniformLocation(m_program, name.c_str()), (int)value);
 
 }
+GLuint ShaderProgram::GetUniformLocation(std::string uniformName)
+{
+	return glGetUniformLocation(m_program, uniformName.c_str());
+}
+
+void ShaderProgram::SetDirectionalLight(DirectionalLight* directionalLight)
+{
+	directionalLight->Use(u_ambientColor, u_ambientIntensity, u_diffIntensity, u_direction, u_specular, u_shine);
+}
+
+
+
+
 

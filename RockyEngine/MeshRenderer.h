@@ -10,23 +10,24 @@
 class MeshRenderer : public Component
 {
 private:
-	//Mesh* m_mesh;
+	
+	Mesh* m_mesh;
 	Texture* m_texture;
 	Model* m_model;
 	ShaderProgram* m_program;
+	ShaderProgram* m_default;
 
 	std::vector<Texture*> textures;
-	std::vector<Mesh*> meshes;
 	std::vector<unsigned int> meshTexIds;
 
 public:
 	// Inherited via Component
-	//MeshRenderer(Mesh* mesh, ShaderProgram* program, Texture* texture);
+	MeshRenderer(Mesh* mesh, ShaderProgram* program, Texture* texture);
 	MeshRenderer(Model* model, ShaderProgram* program, Texture* texture);
 	MeshRenderer(Model* model, ShaderProgram* program);
 	virtual void OnAttach() override;
 	virtual void OnUpdate(float deltaTime) override;
 	virtual void OnRender() override;
-
+	std::vector<Mesh*> meshes;
 };
 

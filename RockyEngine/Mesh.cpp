@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Mesh.h"
 
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices)
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
 {
 	m_indices = indices;
 	m_vertices = vertices;
@@ -30,6 +30,12 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<int> indices)
 	SetUpAttributes(2, 2, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4)); //uv
 
 	SetUpAttributes(3, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2)); // normal
+
+
+	//SetUpAttributes(4, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2)+ sizeof(glm::vec3)); // normal
+
+
+	//SetUpAttributes(5, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2) + sizeof(glm::vec3)+ sizeof(glm::vec3)); // normal
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

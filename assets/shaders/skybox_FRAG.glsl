@@ -1,14 +1,12 @@
-#version 330
+#version 420
 
-attribute vec3 position;
+in vec3 texCoords;
 
-out vec3 texCoords;
-															  
-uniform mat4 projection;
-uniform mat4 view;	
+out vec4 fragColor;
+
+uniform samplerCube skybox;
 
 void main()
 {
-	gl_Position = projection * view * vec4(position,1.0f);
-	texCoords = position;
+	fragColor = texture(skybox, texCoords);
 };

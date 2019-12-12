@@ -1,12 +1,13 @@
-#version 330
+#version 420
+layout(location = 0) in vec3 inPosition;
+layout(location = 2) in vec2 inCoords;
+out vec3 texCoords;
 
-in vec3 texCoords;
-
-out vec4 colour;
-
-uniform samplerCube skybox;
+uniform mat4 projection;
+uniform mat4 view;
 
 void main()
 {
-	colour = texture(skybox, texCoords);
+	gl_Position = projection * view * vec4(inPosition, 1.0f);
+	texCoords = inPosition;
 };

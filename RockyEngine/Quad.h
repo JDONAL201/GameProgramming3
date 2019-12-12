@@ -3,22 +3,6 @@
 #include "Vertex.h"
 namespace Shapes
 {
-	////QUAD
-	//std::vector <Vertex> quadVertices
-	//{
-	//	Vertex(glm::vec3(0.5 , 0.5f , 0.f) , glm::vec4(1), glm::vec2(1.f,1.f)), //topRight
-	//	Vertex(glm::vec3(0.5f , -0.5f , 0.f), glm::vec4(1), glm::vec2(1.f,0.f)), //bottomRight
-	//	Vertex(glm::vec3(-0.5f , -0.5f , 0), glm::vec4(1), glm::vec2(0.f,0.f)), //bottomLeft
-	//	Vertex(glm::vec3(-0.5f , 0.5f , 0), glm::vec4(1), glm::vec2(0.f,1.f)) //topLeft
-	//};
-	//std::vector < int > quadIndices
-	//{
-	//	0 , 1 , 3 ,
-	//	1 , 2 , 3
-	//};
-
-	//CUBE
-
 	std::vector<Vertex> cubeVertices
 	{
 			Vertex(glm::vec3(-1.f , 1.f , -1.f) , glm::vec4(0), glm::vec2(0.f,0.f)),
@@ -33,7 +17,7 @@ namespace Shapes
 
 	};
 
-	std::vector<int> cubeIndices
+	std::vector<unsigned int> cubeIndices
 	{
 		0, 1, 2,// front
 		2, 1, 3,
@@ -53,5 +37,18 @@ namespace Shapes
 		1, 6, 3,// bottom
 		3, 6, 7
 	};
-}
 
+
+	//std::vector <Vertex> quadVertices
+	//{
+	//Vertex(glm::vec3(0.5 , 0.5f , 0.f)), //topRight
+	//Vertex(glm::vec3(0.5f , -0.5f , 0.f)), //bottomRight
+	//Vertex(glm::vec3(-0.5f , -0.5f , 0)), //bottomLeft
+	//Vertex(glm::vec3(-0.5f , 0.5f , 0)) //topLeft
+	//};
+	//std::vector < int > quadIndices
+	//{
+	//0 , 1 , 3 ,
+	//1 , 2 , 3
+	//};
+}

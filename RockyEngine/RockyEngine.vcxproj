@@ -115,7 +115,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
@@ -135,7 +135,7 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
@@ -159,7 +159,7 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
@@ -183,7 +183,7 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>assimp.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;glew32.lib;glew32s.lib;SDL2.lib;SDL2main.lib;opengl32.lib;BulletDynamics_Debug.lib;BulletCollision_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)dependencies\dll" "$(OutDir)" /Y /I
@@ -201,19 +201,24 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     <ClCompile Include="ConeShape.cpp" />
     <ClCompile Include="ControllerComponent.cpp" />
     <ClCompile Include="CylinderShape.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="MousePicking.cpp" />
     <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="RockyEngine.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="ShadowMapping.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SphereShape.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -231,21 +236,26 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     <ClInclude Include="ConeShape.h" />
     <ClInclude Include="ControllerComponent.h" />
     <ClInclude Include="CylinderShape.h" />
+    <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputState.h" />
+    <ClInclude Include="LightSource.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="MousePicking.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Physics.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="ShadowMapping.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SphereShape.h" />
     <ClInclude Include="Texture.h" />
@@ -253,8 +263,12 @@ xcopy "$(SolutionDir)assets" "$(OutDir)assets" /Y /I /E</Command>
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\assets\shaders\shadow_FRAG.glsl" />
+    <None Include="..\assets\shaders\shadow_VERT.glsl" />
     <None Include="..\assets\shaders\simple_FRAG.glsl" />
     <None Include="..\assets\shaders\simple_VERT.glsl" />
+    <None Include="..\assets\shaders\skybox_FRAG.glsl" />
+    <None Include="..\assets\shaders\skybox_VERT.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
