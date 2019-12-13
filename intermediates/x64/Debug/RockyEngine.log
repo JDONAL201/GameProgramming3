@@ -1,6 +1,5 @@
 ﻿  Application.cpp
 C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
-C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(15,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
   RockyEngine.vcxproj -> C:\Users\james\Desktop\GP3\RockyEngine\bin\x64\Debug\RockyEngine_x64.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp-vc140-mt.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp.exe
@@ -9,7 +8,8 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(15,10): warni
   4 File(s) copied
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\batman.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\batman.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\BMW i8.fbx
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cliffjumper.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cliffjumper.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cube.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.obj
@@ -28,13 +28,40 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(15,10): warni
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\floor.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\lava.png
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\missing.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_ao.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_basecolor.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_cavity.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_emission.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_metallic.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_normal.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Btech\Vehicle_rougness.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\DecepticonLogo_alpha.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\dirt_null.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\generic_item.mesh
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\Normal_Bump_Normal_Bump.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmLo_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmLo_TEXSET_N.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmLo_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_E.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_Norm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_E.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_Norm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_E.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_Norm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_E.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_N.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_E.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_N.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_ArmUp_TEXSET_Color_NormX.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_ArmUp_TEXSET_N.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_ArmUp_TEXSET_S.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_D.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_E.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_N.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_S.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Alpha .jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Alpha02.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Ground01.jpg
@@ -114,8 +141,6 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(15,10): warni
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW FRONT MASK.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW FRONT.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\New folder\car_bmw_i8_df.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\New folder\Universal Wheel.png
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship Ao_Blender.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_color_4.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_curvature.jpg
@@ -123,4 +148,4 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(15,10): warni
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_metalness.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_nmap_2_Tris.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_rough.jpg
-  116 File(s) copied
+  142 File(s) copied

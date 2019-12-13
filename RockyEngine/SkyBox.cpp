@@ -55,12 +55,11 @@ void SkyBox::RenderSkyBox(ShaderProgram* m_program)
 	m_program->SetUniformMat4("projection", projection);
 	m_program->SetUniformMat4("view", view);
 
-
 	glActiveTexture(GL_TEXTURE0); // set active texture
 	glBindTexture(GL_TEXTURE_CUBE_MAP, m_textureID);// binde the texture to use for cube map with texture location
 
 	skyboxCube->Bind();   // render the skybox
-	//glDrawElements(GL_TRIANGLES,skyboxCube->GetIndiciesCount(), GL_UNSIGNED_INT, 0);
+
 	glDepthMask(GL_TRUE); // enable the depth mask 
 
 	

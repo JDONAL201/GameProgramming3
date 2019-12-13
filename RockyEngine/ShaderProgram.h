@@ -24,8 +24,8 @@ public:
 
 	void SetUniformVec3(const std::string& name, const glm::vec3& value)const;
 	void SetUniformMat4(const std::string& name, const glm::mat4& value)const;
-	void  SetFloat(const std::string& name, float value) const;
-	void SetUniformBoolean(const std::string& name, bool value);
+	void  SetUniformFloat(const std::string& name, float value) const;
+	void SetUniformInt(const std::string& name, bool value);
 	GLuint GetUniformLocation(std::string uniformName);
 	void SetDirectionalLight(DirectionalLight* directionalLight);
 

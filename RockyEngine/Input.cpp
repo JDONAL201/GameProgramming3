@@ -24,6 +24,7 @@ void Input::SetKey(SDL_Keycode key, bool state)
 		m_state.keys[index] = state;
 	}
 }
+
 bool Input::GetKey(SDL_Keycode key)
 {
 	int index = key;
@@ -37,3 +38,5 @@ bool Input::GetKey(SDL_Keycode key)
 	}
 	else return false;
 }
+
+

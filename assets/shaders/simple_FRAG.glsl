@@ -31,7 +31,7 @@ uniform Directional directional;
 uniform Material material;
 
 uniform vec3 viewPosition;
-uniform bool blinn;
+uniform bool blinn = true;
 
 
 float CalculateShadowFactor()

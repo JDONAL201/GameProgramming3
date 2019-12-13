@@ -7,25 +7,33 @@ void ControllerComponent::ControlEntityMovement(float deltaTime)
 {
 	m_velocity = deltaTime * m_speed;
 
-	if (INPUT->GetKey(SDLK_w))
+	if (INPUT->GetKey(SDLK_w) || INPUT->GetGamepad_LeftMotion().y < 0)
 	{
 		m_Transform->AddPosition(m_Transform->GetForward() * m_velocity);
 	}
 
-	if (INPUT->GetKey(SDLK_s))
+	if (INPUT->GetKey(SDLK_s) || INPUT->GetGamepad_LeftMotion().y > 0)
 	{
 		m_Transform->AddPosition(-m_Transform->GetForward() * m_velocity);
 	}
 
-	if (INPUT->GetKey(SDLK_a))
+	if (INPUT->GetKey(SDLK_a) || INPUT->GetGamepad_LeftMotion().x < 0)
 	{
 		m_Transform->AddPosition(-m_Transform->GetRight() * m_velocity);
 	}
 
-	if (INPUT->GetKey(SDLK_d))
+	if (INPUT->GetKey(SDLK_d) || INPUT->GetGamepad_LeftMotion().x > 0)
 	{
 		m_Transform->AddPosition(m_Transform->GetRight() * m_velocity);
 	}
+
+	if (INPUT->GamePadIsActive())
+	{
+		m_Transform->RotateEulerAxis(INPUT->GetGamepad_RightMotion().x * (m_speed-2.f), m_Transform->GetRight());
+		m_Transform->RotateEulerAxis(INPUT->GetGamepad_RightMotion().y * m_speed, glm::vec3(0.f, 1.f, 0.f));
+	}
+
+
 }
 void ControllerComponent::ControlEntityRotation()
 {

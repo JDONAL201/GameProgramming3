@@ -99,11 +99,11 @@ void ShaderProgram::SetUniformMat4(const std::string& name, const glm::mat4& mat
 		__debugbreak();
 	}
 }
-void ShaderProgram::SetFloat(const std::string& name, float value) const
+void ShaderProgram::SetUniformFloat(const std::string& name, float value) const
 {
 	glUniform1f(glGetUniformLocation(m_program, name.c_str()), value);
 }
-void ShaderProgram::SetUniformBoolean(const std::string& name, bool value)
+void ShaderProgram::SetUniformInt(const std::string& name, bool value)
 {
 	glUniform1i(glGetUniformLocation(m_program, name.c_str()), (int)value);
 

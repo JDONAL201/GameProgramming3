@@ -63,8 +63,12 @@ void MeshRenderer::OnUpdate(float deltaTime)
 }
 void MeshRenderer::OnRender()
 {
-	//glm::mat4 model = m_entity->GetTransform()->GetTransformationMatrix();
-	//m_program->SetUniformMat4("model", model);
+	if (Application::Instance()->GetRendererType() != RenderType::SHADOWPASS)
+	{
+		glm::mat4 model = m_entity->GetTransform()->GetTransformationMatrix();
+		m_program->SetUniformMat4("model", model);
+		m_program->Use(); //use defualt
+	}
 	
 	if (m_model != nullptr)
 	{
