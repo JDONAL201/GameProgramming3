@@ -60,8 +60,8 @@ private:
 
 	GLuint u_ambientIntensity = 0, u_ambientColor = 0, u_direction = 0, u_diffIntensity = 0, u_viewPosition = 0, u_model = 0, u_projection = 0, u_view = 0 , u_specular = 0, u_shine = 0;
 
-	ShaderProgram* BlinnPhongShader;
-	ShaderProgram* ShadowShader;
+	std::shared_ptr<ShaderProgram> BlinnPhongShader;
+	std::shared_ptr<ShaderProgram> ShadowShader;
 	SkyBox skybox;
 
 

@@ -241,5 +241,6 @@
     <None Include="..\assets\shaders\simple_FRAG.glsl">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 class ShaderProgram
 {
 private:
-	//TODO: TRACK CURRENTLY ACTIVE SHADER
+
 	GLuint m_activeProgram;
 	GLuint m_program;
 	GLuint u_ambientColor, u_ambientIntensity, u_diffIntensity, u_direction, u_specular, u_shine,u_model;

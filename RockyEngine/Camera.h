@@ -19,7 +19,7 @@ private:
 	};
 	union
 	{
-		float m_ratio =1280.f / 720.f; //TODO: fix the macros so that we can use (float) WINDOW_W etc instead , accessible from one place
+		float m_ratio =1280.f / 720.f;
 		float m_left;
 	};
 	float m_right = 0;

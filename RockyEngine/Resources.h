@@ -10,10 +10,9 @@ class Resources
 {
 private:
 
-	//TODO: USE SMART POINTERS
-	std::unordered_map<std::string, ShaderProgram*> m_shaderPrograms;
-	std::unordered_map<std::string, Model*> m_models;
-	std::unordered_map<std::string, Texture*> m_textures;
+	std::unordered_map<std::string,std::shared_ptr<ShaderProgram>> m_shaderPrograms;
+	std::unordered_map<std::string, std::shared_ptr<Model>> m_models;
+	std::unordered_map<std::string, std::shared_ptr<Texture>> m_textures;
 	std::vector<std::string> skyboxFaces;
 
 	static Resources* m_instance;
@@ -24,25 +23,29 @@ public:
 	
 	static Resources* GetInstance(); //singleton
 	//adds shader to the map , should be done at the start of application
-	void AddShader(ShaderProgram* shader, std::string name)
+	
+	void AddShader(const std::string name, const std::string& VshaderPath, const std::string& FshaderPath)
 	{
-		m_shaderPrograms[name] = shader;
+		if (m_shaderPrograms.find(name) == m_shaderPrograms.end())
+		{
+			m_shaderPrograms[name] = std::shared_ptr<ShaderProgram>(new ShaderProgram(SHADER_PATH + VshaderPath, SHADER_PATH + FshaderPath));
+		}
 	}
 
 	void AddModel(const std::string& directory);//, const std::string& texturePath);
-	void AddModel(const std::string& name, Model* m) { m_models[name] = m; }
+	void AddModel(const std::string& name, std::shared_ptr<Model> m) { m_models[name] = m; }
 
 	void AddModelWithMat(const std::string& directory, const std::string& texturePath);
 
 	void AddTexture(const std::string& directory);
-	void AddTexture(const std::string& name, Texture* t) { m_textures[name] = t; }
+	void AddTexture(const std::string& name, std::shared_ptr<Texture> t) { m_textures[name] = t; }
 
 
 	//void AddSkyboxFaces(const std::string& faceLocation);
 
-	ShaderProgram* GetShader(const std::string& name);
-	Model* GetModel(const std::string& name);
-	Texture* GetTexture(const std::string& name);
+	std::shared_ptr<ShaderProgram> GetShader(const std::string& name);
+	std::shared_ptr<Model> GetModel(const std::string& name);
+	std::shared_ptr<Texture> GetTexture(const std::string& name);
 
 	std::vector<std::string> GetSkyboxFaces() { return skyboxFaces; }
 	//Deletes all the things!

@@ -5,15 +5,12 @@
 
 Texture::Texture(const std::string& directory)
 {
-	this->m_directory = directory;
+	m_directory = directory;
+	m_textureID = 0;
 }
 bool Texture::Load()
 {
-	//stbi_set_flip_vertically_on_load(true);
-	
-	//GLuint texture = 0;
-
-	int width, height, nrChannels;
+	int width = 0, height = 0, nrChannels = 0;
 	unsigned char* data = stbi_load(m_directory.c_str(), &width, &height, &nrChannels, 0);
 
 	if (data)
@@ -21,11 +18,11 @@ bool Texture::Load()
 		GL_ATTEMPT(glGenTextures(1, &m_textureID));
 		GL_ATTEMPT(glBindTexture(GL_TEXTURE_2D, m_textureID));
 
+		GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+		GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 		GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
 		GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
 
-		GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-		GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 
 		auto glChannels = GL_RGBA;
 
@@ -51,20 +48,15 @@ bool Texture::Load()
 		return false;
 	}
 
-
 	stbi_image_free(data);
-
 	return true;
 }
-//Texture::Texture(std::string path) : m_textureID(Load(path)), m_directory(path)
-//{
-//
-//}
+
 void Texture::ReleaseTexture()
 {
-	/*glDeleteTextures(1, &m_textureID);
+	glDeleteTextures(1, &m_textureID);
 	m_textureID = 0;
-	m_directory = "";*/
+	m_directory = "";
 }
 
 void Texture::Bind()

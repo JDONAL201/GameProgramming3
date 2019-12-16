@@ -39,9 +39,9 @@ void Model::processMesh(aiMesh* mesh, const aiScene* scene)
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 
-	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+	for (unsigned int i = 0; i < mesh->mNumVertices; i++)// iterate throught num vertices
 	{
-		Vertex vertex;
+		Vertex vertex; // create a vertex
 		//process vertex position, normlas , colors and texture coords
 		vertex.pos.x = mesh->mVertices[i].x;
 		vertex.pos.y = mesh->mVertices[i].y;
@@ -76,19 +76,19 @@ void Model::processMesh(aiMesh* mesh, const aiScene* scene)
 			vertex.texture = glm::vec2(0.f, 0.f);
 		}
 
-		vertices.push_back(vertex);
+		vertices.push_back(vertex); // add to end of vector
 	}
 
-	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+	for (unsigned int i = 0; i < mesh->mNumFaces; i++) // iterate through the faces of the mesh
 	{
-		aiFace face = mesh->mFaces[i];
-		for (unsigned  j = 0; j < face.mNumIndices; j++)
+		aiFace face = mesh->mFaces[i]; // create a face to currently check
+		for (unsigned  j = 0; j < face.mNumIndices; j++) // iterate through indices 
 		{
-			indices.push_back(face.mIndices[j]);
+			indices.push_back(face.mIndices[j]);// add the current indice to the indices vector
 		}
 	}
 
-	Mesh* newMesh = new Mesh(vertices, indices);
+	Mesh* newMesh = new Mesh(vertices, indices); // call mesh constructor with the newly created vectors
 	m_meshes.push_back(newMesh);
 	m_meshToTexID.push_back(mesh->mMaterialIndex); //Where the material is in the material list, sync the texture being pointed to
 	//return newMesh;
@@ -97,16 +97,16 @@ void Model::processMaterials(const aiScene* scene)
 {
 	m_textures.resize(scene->mNumMaterials); //create a size relative to the number of materials
 
-	for (unsigned int i = 0; i < scene->mNumMaterials; i++)
+	for (unsigned int i = 0; i < scene->mNumMaterials; i++) // iterate through the materials
 	{
-		aiMaterial* material = scene->mMaterials[i];
+		aiMaterial* material = scene->mMaterials[i]; // create a material from current element
 
-		m_textures[i] = nullptr;
+		m_textures[i] = nullptr; // set the current texture in element i to nullptr
 
 
-		if (material->GetTextureCount(aiTextureType_DIFFUSE)) //can check different types of textures here if implementing normals etc TODO:: IF DOING NORMAL
+		if (material->GetTextureCount(aiTextureType_DIFFUSE)) //check the number of diffuse textures ( can also do other types )
 		{
-			aiString path;
+			aiString path; // create a assimp string
 
 			if (material->GetTexture(aiTextureType_DIFFUSE, 0, &path) == AI_SUCCESS) //get the diffuse texture and place the path in our path string, check that it loaded successfully
 			{
@@ -114,17 +114,17 @@ void Model::processMaterials(const aiScene* scene)
 				int index = std::string(path.data).rfind("\\"); // convert path into regular string no aiString, then reverse through and fince "\" , 2 need as its an escape character
 				std::string filename = std::string(path.data).substr(index + 1); // thiss will retrieve everything after the backslash and store in filename
 
-				std::string texPath = m_texFolder  + filename;
+				std::string texPath = m_texFolder  + filename; // create a string we can use by adding both the folder and file name of the texture
 				
-				m_textures[i] = new Texture(texPath.c_str());
+				m_textures[i] = new Texture(texPath); // pass the file name to the texture constructor
 
 				//Changed texture class to a bool to check if the texture is able to load or not
-				if (!m_textures[i]->Load())
+				if (!m_textures[i]->Load()) // check if the load was successful
 				{
 					//when failed to load, assign to null ptr 
 					LOG_WARNING("Failed to load texture at: " + texPath);
-					delete m_textures[i];
-					m_textures[i] = nullptr;
+					delete m_textures[i]; // remove 
+					m_textures[i] = nullptr; // reset to null ptr
 				}
 
 			}
@@ -132,8 +132,8 @@ void Model::processMaterials(const aiScene* scene)
 
 		if (!m_textures[i]) // if there isnt texture , then apply a defualt texture 
 		{
-			std::string assetPath = "assets//missing.png";
-			m_textures[i] = new Texture(assetPath.c_str());
+			std::string assetPath = "assets//missing.png"; // if the texture being adding doesnt exist , load in missing
+			m_textures[i] = new Texture(assetPath);
 			m_textures[i]->Load();
 		}
 	}

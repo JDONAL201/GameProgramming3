@@ -5,22 +5,21 @@
 #include "Application.h"
 #include "Camera.h"
 
-
-MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program)
+MeshRenderer::MeshRenderer(std::shared_ptr<Model> model, std::shared_ptr<ShaderProgram> program)
 {
 	m_program = program;
 	m_default = program;
 	m_model = model;
 	m_texture = nullptr;
 }
-MeshRenderer::MeshRenderer(Mesh* mesh, ShaderProgram* program, Texture* texture)
+MeshRenderer::MeshRenderer(std::shared_ptr<Mesh> mesh, std::shared_ptr<ShaderProgram> program, std::shared_ptr<Texture> texture)
 {
 	m_model = nullptr;
 	m_mesh = mesh;
 	m_program = program;
 	m_texture = texture;
 }
-MeshRenderer::MeshRenderer(Model* model, ShaderProgram* program, Texture* texture)
+MeshRenderer::MeshRenderer(std::shared_ptr<Model> model, std::shared_ptr<ShaderProgram> program, std::shared_ptr<Texture> texture)
 {
 	m_program = program;
 	m_model = model;

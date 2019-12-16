@@ -20,19 +20,19 @@ private:
 	//float rotSpeed = 0.1f;
 
 public:
-	std::unordered_map<std::string, Entity*>  m_entities;
+	std::unordered_map<std::string, std::shared_ptr<Entity>>  m_entities;
 	static EntityManager* GetInstance();
-	Entity* CreateEntity(std::string tag);
+	std::shared_ptr<Entity> CreateEntity(std::string tag);
 
-	Entity* GetEntity(const std::string& name);
+	std::shared_ptr<Entity> GetEntity(const std::string& name);
 	void DisplayAllEntities();
 	void ReleaseEntities();
 	/*void MovableEntity(Entity* m_entity, float deltaTime, float speed);
 	void Rotate(Entity* entity, double mouseX, double mouseY);*/
 	
-	void Destroy(Entity* entity);
+	void Destroy(std::shared_ptr<Entity> entity);
 	void Destroy(std::string entityID);
-	void Destroy(Entity* entity, float deltaTime,float delay);
+	void Destroy(std::shared_ptr<Entity> entity, float deltaTime,float delay);
 
 };
 

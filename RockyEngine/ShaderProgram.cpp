@@ -40,6 +40,7 @@ void ShaderProgram::Link()
 	u_specular = GetUniformLocation("material.specular_Intensity");
 	u_shine = GetUniformLocation("material.shine_Strength");
 	u_model = GetUniformLocation("model");
+	
 	//once linked no longer needed
 	delete m_vertexShader;
 	delete m_fragmentShader;
@@ -47,13 +48,7 @@ void ShaderProgram::Link()
 
 void ShaderProgram::Use()
 {
-	//if (m_activeProgram == m_program)
-	//{
-	//	return;
-	//}
-
 	glUseProgram(m_program);
-	m_activeProgram = m_program;
 }
 
 bool ShaderProgram::CheckForLinkErrors()

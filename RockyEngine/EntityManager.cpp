@@ -17,19 +17,29 @@ EntityManager* EntityManager::GetInstance()
 	return m_instance;
 }
 
-Entity* EntityManager::CreateEntity(std::string tag)
+std::shared_ptr<Entity> EntityManager::CreateEntity(std::string tag)
 {
 	if (m_entities.find(tag) == m_entities.end())
 	{
-		m_entities[tag] = new Entity();
+		m_entities[tag] = std::shared_ptr<Entity>(new Entity());
 		return m_entities[tag];
 	}
-	
-	LOG_ERROR("Cannot create entity with same tagID : Change tag : " + tag);
+	else
+	{
+		for (int i = 0; i < m_entities.size(); i++)
+		{
+			std::string newTag = tag + "(" + std::to_string(i) +")";
 
+			if (m_entities.find(newTag) == m_entities.end())
+			{
+				m_entities[newTag] = std::shared_ptr<Entity>(new Entity());
+				return m_entities[newTag];
+			}
+		}
+	}
 }
 
-Entity* EntityManager::GetEntity(const std::string& name)
+std::shared_ptr<Entity> EntityManager::GetEntity(const std::string& name)
 {
 	if (m_entities.find(name) == m_entities.end())
 	{
@@ -43,7 +53,7 @@ Entity* EntityManager::GetEntity(const std::string& name)
 
 void EntityManager::DisplayAllEntities()
 {
-	LOG_RESOURCE("All currently active entities : ");
+	LOG_RESOURCE("============ALL ACTIVE ENTITIES=============== ");
 	unsigned int count = 0;
 	for (auto itr = m_entities.begin(); itr != m_entities.end(); itr++)
 	{
@@ -53,61 +63,18 @@ void EntityManager::DisplayAllEntities()
 }
 void EntityManager::ReleaseEntities()
 {
-	for ( auto iter = m_entities.begin(); iter != m_entities.end(); iter++)
-	{
-		delete iter->second;
-	}
+	
 }
-void EntityManager::Destroy(Entity* entity)
+void EntityManager::Destroy(std::shared_ptr<Entity> entity)
 {
-	for (auto iter = m_entities.begin(); iter != m_entities.end(); iter++)
-	{
-		if (iter->second == entity)
-		{
-			delete iter->second;
-			m_entities.erase(iter);
-			return;
-		}
-	}
 }
 void EntityManager::Destroy(std::string entityID)
 {
-	for (auto iter = m_entities.begin(); iter != m_entities.end(); iter++)
-	{
-		if (iter->first == entityID)
-		{
-			delete iter->second;
-			m_entities.erase(iter);
-			return;
-		}
-	}
+	
 }
-void EntityManager::Destroy(Entity* entity, float deltaTime, float delay)
+void EntityManager::Destroy(std::shared_ptr<Entity> entity, float deltaTime, float delay)
 {
-	bool found = false;
-
-	for (auto iter = m_entities.begin(); iter != m_entities.end(); iter++)
-	{
-		if (iter->second == entity)
-		{
-			while (found == false)
-			{
-				if (delay > 0)
-				{
-					std::cout<<delay<<std::endl;
-					delay -= deltaTime /100;
-				}
-				else 
-				{
-					delay = 0;
-					found = true;
-				}
-			}
-			delete iter->second;
-			m_entities.erase(iter);
-			break;
-		}
-	}
+	//Removed 
 }
 EntityManager::~EntityManager()
 {

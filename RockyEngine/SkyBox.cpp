@@ -43,7 +43,7 @@ void SkyBox::LoadSkybox()
 	
 	skyboxCube = new Mesh(cubeVertices, cubeIndices);
 }
-void SkyBox::RenderSkyBox(ShaderProgram* m_program)
+void SkyBox::RenderSkyBox(std::shared_ptr<ShaderProgram> m_program)
 {
 	glm::mat4 view = Application::Instance()->GetCamera()->GetView();
 	glm::mat4 projection = Application::Instance()->GetCamera()->GetProj();

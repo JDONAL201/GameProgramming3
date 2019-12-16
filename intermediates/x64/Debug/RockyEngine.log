@@ -1,4 +1,6 @@
 ﻿  Application.cpp
+  ControllerComponent.cpp
+  Generating Code...
 C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
   RockyEngine.vcxproj -> C:\Users\james\Desktop\GP3\RockyEngine\bin\x64\Debug\RockyEngine_x64.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp-vc140-mt.dll
@@ -6,18 +8,30 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warni
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\glew32.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\SDL2.dll
   4 File(s) copied
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\batman.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\batman.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cliffjumper.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cliffjumper.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Budova01.fbx
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cube.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\dodge.fbx
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Freigther_BI_Export.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Freigther_BI_Export.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Joker.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Joker.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Robot and Plant.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Robot and Plant.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\maya.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\maya.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\muro.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\muro.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\mustang_GT.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\mustang_GT.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\PoliceCar.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\PoliceCar.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Portal Gun.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Portal Gun.obj
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\r2-d2.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\r2-d2.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\ship.fbx
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sls_amg.mtl
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sls_amg.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sphere.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\shadow_FRAG.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\shadow_VERT.glsl
@@ -28,124 +42,95 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warni
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\floor.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\lava.png
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\missing.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\DecepticonLogo_alpha.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\dirt_null.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\generic_item.mesh
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\Normal_Bump_Normal_Bump.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmLo_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmLo_TEXSET_N.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmLo_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_E.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_Norm.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_ArmUp_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_E.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_Norm.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Chest_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_E.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_Norm.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Legs_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_E.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_N.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_Bumblebee_Wheel_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_E.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_N.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\RB_CliffJumper_Head_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_ArmUp_TEXSET_Color_NormX.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_ArmUp_TEXSET_N.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_ArmUp_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_D.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_E.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_N.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\a\WEP_BurstRifle_TEXSET_S.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Alpha .jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Alpha02.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Ground01.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\Clank\Robot01.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\building\Drevo[Albedo].png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\building\okno[Albedo].png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\building\props[Albedo].png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\building\Zed[Albedo].png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\city\back.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\city\down.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\city\front.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\city\left.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\city\right.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\city\up.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\back.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\down.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\front.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\left.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\right.tga
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\default\up.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder\batman.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder\batman_emission.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder2\Joker_Alpha.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder2\Joker_Diffuse.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder2\Joker_Normal.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder2\Joker_Specular.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BOTTOM.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BOTTOM.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BRAKDISC.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BRAKDISC.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BREMBO MIRROR NORMAL.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BREMBO MIRROR.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BREMBO NORMAL.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\BREMBO.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CARBON.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN1.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN2.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN3.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN4.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN5.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN6.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLEN7.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENG.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BADGING MASK.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BADGING MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BADGING NORMAL.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BADGING NORMAL.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BADGING.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BADGING.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BRAKELIGHT.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 BRAKELIGHT.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 HEADLIGHT GLASS.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 HEADLIGHT MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 HEADLIGHT.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 HEADLIGHT.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 INTERIOR.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 INTERIOR.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 MISC.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 MISC.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 RIM.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\CHALLENGER71 RIM.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DOORLIN1.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DOORLINE MASK.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DOORLINE MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DOORLINE.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DOORLINE.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DRIVER CUTOUT.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DRIVER.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\DRIVER.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\ENGINE.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\ENGINE.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\LICENSE .png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\LICENSE MASK.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\LICENSE MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\LICENSE.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\LICENSE.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIRE BUM.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIRE BUMP.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIRE BUMP.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIRE.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIRE.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIREBACK.png
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TIREBACK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TREAD BUMP.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\TREAD.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WDEFROST.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW FRONT MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW FRONT.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\folder3\WINDOW MASK.tga
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship Ao_Blender.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_color_4.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_curvature.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_emi.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_metalness.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_nmap_2_Tris.jpg
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\ship\Intergalactic Spaceship_rough.jpg
-  142 File(s) copied
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\night\back.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\night\down.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\night\front.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\night\left.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\night\right.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\cubemaps\night\up.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\gun\portalgun_col.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\joker\Joker_Diffuse.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_body_dm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_body_dm_clean.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_body_nm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_body_sm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_head_dm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_head_nm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\man\Muro_head_sm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\generic_item.mesh
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\Mouth.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\SirenBody_Bm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\SirenBody_Nrm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\SirenHands_Dif.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\SirenHands_Nrm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\SirenHead_Bm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\maya\SirenHead_Nrm.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\body.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\brembo_spt2.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\brembo_spt2.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\carpback.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\carpback.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\carplate.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\carplate.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\chassis.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\chrome_material_07.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\cloth_brightgrey.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\cloth_brightgrey.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\digital_gauge.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\digital_gauge.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\glass_dam.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\interior_emissive_lod0.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\interior_emissive_lod0.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\interior_lights.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\interior_lod0.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\interior_LOD0.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\leather.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\leather.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\leather_stripey_black.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\leather_stripey_black.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\lights_lod0.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\lights_lod0.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\misc_body.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\misc_body.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\mustang_misc.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\mustang_misc.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\nodamage_lod0.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\nodamage_lod0.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic_black.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic_black.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic_black02.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic_black02.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic_dash.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\plastic_dash.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\resh.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\resh.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\scratch.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\tyre.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\undercarriage.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\undercarriage.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\vehiclelights.png
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\vehiclelights.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\vehiclelights_on.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\mustang\wheel_lod0.tga
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\space\Freighter_C.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\space\Freighter_S.jpg
+  C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\space\Spec_Bake.png
+  125 File(s) copied

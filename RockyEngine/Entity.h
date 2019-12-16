@@ -6,7 +6,7 @@
 	class Entity
 	{
 	private:
-		std::vector <Component*> m_components;
+		
 		Transform* m_transform = nullptr;
 
 	public:
@@ -19,6 +19,7 @@
 		Transform* GetTransform() { return m_transform; };
 
 		std::string m_tag =  "";
+		std::vector <Component*> m_components;
 };
 
 
@@ -34,9 +35,10 @@ void Entity::AddComponent()
 	}
 	else
 	{
-		LOG_WARNING("Can't add component, does not inherit from Component" );
+		LOG_WARNING("Does not inherit from Component" );
 	}
 }
+
 template<class T>
 T* Entity::GetComponent()
 {
@@ -47,8 +49,8 @@ T* Entity::GetComponent()
 		{
 			return cd;
 		}
-
 	}
+	LOG_WARNING("No component of type is attached");
 	return nullptr;
 }
 

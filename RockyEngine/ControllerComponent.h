@@ -8,7 +8,7 @@ private:
 	float pitch = 0.f;
 	float yaw = 0.f;
 	float m_velocity;
-	float m_speed = 5.0f;
+	float m_speed = 2.0f;
 	float m_rotSpeed = 0.5f;
 	double mouseX, mouseY;
 

@@ -11,8 +11,6 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
 	GL_ATTEMPT(glGenVertexArrays(1, &m_vao)); //Generate vertex array object 
 	GL_ATTEMPT(glBindVertexArray(m_vao));
 	
-
-	
 	GL_ATTEMPT(glGenBuffers(1, &m_vbo));
 	GL_ATTEMPT(glBindBuffer(GL_ARRAY_BUFFER, m_vbo));
 	GL_ATTEMPT(glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * m_vertices.size(), &vertices[0], GL_STATIC_DRAW));
@@ -30,7 +28,6 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
 	SetUpAttributes(2, 2, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4)); //uv
 
 	SetUpAttributes(3, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2)); // normal
-
 
 	//SetUpAttributes(4, 3, GL_FLOAT, sizeof(glm::vec3) + sizeof(glm::vec4) + sizeof(glm::vec2)+ sizeof(glm::vec3)); // normal
 
@@ -50,8 +47,6 @@ void Mesh::SetUpAttributes(int index, int count, int type, size_t offset)
 
 void Mesh::Bind()
 {
-	// TODO: don't bind mesh if it has already been bound
-
 	GL_ATTEMPT(glBindVertexArray(m_vao));
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
 	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);

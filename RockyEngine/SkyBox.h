@@ -6,7 +6,7 @@ public:
 	SkyBox();
 	SkyBox(std::vector<std::string>facePaths);
 	void LoadSkybox();
-	void RenderSkyBox(ShaderProgram* shader);
+	void RenderSkyBox(std::shared_ptr<ShaderProgram> shader);
 
 private:
 	std::vector<std::string> m_faces;

@@ -3,7 +3,7 @@
 #include "InputState.h"
 
 #define INPUT Input::GetInstance()
-
+enum C_STICK {left_x,left_y,right_x,right_y};
 class Input
 {
 private:
@@ -13,7 +13,15 @@ private:
 	InputState m_state;
 	glm::vec2 gamePad_LeftStick = glm::vec2(0.f,0.f);
 	glm::vec2 gamePad_RightStick = glm::vec2(0.f, 0.f);
+	SDL_GameController* m_gamePad;
+	double X_Axis_Left, Y_Axis_Left, X_Axis_Right, Y_Axis_Right;
+	float deadZone = 8000;
+	~Input();
+
 public:
+
+	void InitGamePads();
+	void UpdateGamePads(SDL_Event event);
 
 	static Input* GetInstance();
 	void SetKey(SDL_Keycode key, bool state);
@@ -30,16 +38,5 @@ public:
 	glm::vec2 GetGamepad_RightMotion() { return gamePad_RightStick; }
 
 	bool GamePadIsActive() { return m_gamePad_Active; }
-	void SetGamePadActive(bool b) { m_gamePad_Active = b; }
-	void Gamepad_LeftMotion(glm::vec2 motion)
-	{
-		gamePad_LeftStick = motion;
-		std::cout << "X: " << gamePad_LeftStick.x << " Y: " << gamePad_LeftStick.y << std::endl;
-	}
-
-	void Gamepad_RightMotion(glm::vec2 motion)
-	{
-		gamePad_RightStick = motion;
-	}
 };
 

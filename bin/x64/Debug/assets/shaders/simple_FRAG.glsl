@@ -40,21 +40,22 @@ float CalculateShadowFactor()
 	projCoords = (projCoords * 0.5) + 0.5;
 	
 	//float closest = texture(m_shadowMap, projCoords.xy).r;
-	float current = projCoords.z;
 	
+	float current = projCoords.z;
+
 	vec3 nNormal = normalize(normal);
 	vec3 lightDirection = normalize(directional.direction);
-
-	float bias = max(0.01 * (1 - dot(nNormal,lightDirection)),0.0005);
-	//float shadow = current - bias > closest ? 1.0 : 0.0;
+	float bias = max(0.001 * (1 - dot(nNormal,lightDirection)),0.0005);
+	
+	//float shadow = current  > closest ? 1.0 : 0.0;
 	float shadow = 0.0;
 
 	vec2 texelSize = 1.0 / textureSize(m_shadowMap, 0);
-	for (int i = -1; i <= 1; ++i)
+	for (int x = -1; x <= 1; ++x)
 	{
-		for (int j = -1; j <= 1; ++j)
-		{
-			float pcfDepth = texture(m_shadowMap, projCoords.xy + vec2(i, j) * texelSize).r;
+		for (int y = -1; y <= 1; ++y)
+	{
+			float pcfDepth = texture(m_shadowMap, projCoords.xy + vec2(x, y) * texelSize).r;
 			shadow += current - bias > pcfDepth ? 1.0 : 0.0;
 		}
 	}
@@ -73,8 +74,10 @@ void main()
 {
 	vec4 ambient_Color = vec4(directional.color,1.0f) * directional.ambient_Intensity;
 	
-	float diffuseFactor = max(dot(normalize(normal),normalize(directional.direction)),0.0f);
-	vec4 diffuse_Color = vec4(directional.color , 1.0f) * directional.diffuse_Intensity * diffuseFactor;
+	float diffuseFactor = max(dot(normalize(normal),
+							normalize(directional.direction)),0.0f);
+	vec4 diffuse_Color = vec4(directional.color , 1.0f) * 
+						directional.diffuse_Intensity * diffuseFactor;
 	
 	
 	vec4 specular_Color = vec4(0,0,0,0);
@@ -82,6 +85,7 @@ void main()
 	if(diffuseFactor > 0.0f)
 	{
 		vec3 viewDirection = normalize(viewPosition - fragPosition);
+		
 		
 		float specularFactor = 0.0f;
 		

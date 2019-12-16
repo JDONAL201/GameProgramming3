@@ -18,7 +18,8 @@ bool ShadowMapping::Init(GLuint width, GLuint height)
 
 	GL_ATTEMPT(glGenTextures(1, &shadowMap));
 	GL_ATTEMPT(glBindTexture(GL_TEXTURE_2D, shadowMap));
-	GL_ATTEMPT(glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowWidth, shadowHeight, 0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr));
+	GL_ATTEMPT(glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT,
+	shadowWidth, shadowHeight,0, GL_DEPTH_COMPONENT, GL_FLOAT, nullptr));
 
 	GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 	GL_ATTEMPT(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
@@ -32,7 +33,8 @@ bool ShadowMapping::Init(GLuint width, GLuint height)
 	GL_ATTEMPT(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMap, 0));
 
 	GL_ATTEMPT(glDrawBuffer(GL_NONE));
-	GL_ATTEMPT(glReadBuffer(GL_NONE));//telling opengl that we are not using the color buffer
+	GL_ATTEMPT(glReadBuffer(GL_NONE));
+
 
 	GLenum err = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
@@ -56,9 +58,6 @@ void ShadowMapping::Read(GLenum textureUnit)
 {
 	glActiveTexture(textureUnit);
 	glBindTexture(GL_TEXTURE_2D, shadowMap);
-
-
-
 }
 
 ShadowMapping::~ShadowMapping()
@@ -67,7 +66,6 @@ ShadowMapping::~ShadowMapping()
 	{
 		glDeleteFramebuffers(1, &m_fbo);
 	}
-
 	if (shadowMap)
 	{
 		glDeleteTextures(1, &shadowMap);
