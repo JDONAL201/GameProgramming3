@@ -104,13 +104,10 @@ void Application::LoadResources()
 	LOG_RESOURCE("Resource notification!");
 
 	//Loading resources ( Models, Textures, ShadersKyloRenCommandShuttle.obj
-	//m_Resources->AddModelWithMat("PoliceCar.obj", "police//");
 	m_Resources->AddModelWithMat("Freigther_BI_Export.obj", "space//"); 
 	m_Resources->AddModelWithMat("muro.obj", "man//");
 	m_Resources->AddModelWithMat("Joker.obj", "joker//");
 	m_Resources->AddModelWithMat("mustang_GT.obj", "mustang//"); 
-	m_Resources->AddModelWithMat("maya.obj", "maya//");
-	//m_Resources->AddModelWithMat("Portal Gun.obj", "gun//");
 
 	m_Resources->AddModel("error.obj");
 	m_Resources->AddModel("Cube.obj");
@@ -137,6 +134,8 @@ void Application::LoadResources()
 	ShadowShader = m_Resources->GetShader("shadow");
 
 	main_LightSource = new DirectionalLight(4096, 4096,glm::vec3(1.0f, 1.0f, 1.0f), 0.15f, 0.4f, glm::vec3(-15.0f, -14.0f, 0.0f),0.01f,2); //32 multiple of 2
+
+	LOG_RESOURCE("THE ROCKY ENGINE: JAMES DONALD S1229955 GP3 SUBMMISSION !");
 }
 void Application::Loop()
 {
@@ -243,7 +242,6 @@ void Application::ProcessInput()
 					projectile->GetComponent<RigidBody>()->Init(new SphereShape(0.5f));
 					projectile->GetComponent<RigidBody>()->AddForce(Point_Forward, projectile->GetTransform()->GetPosition(), 800.f);
 					projectile->GetComponent<RigidBody>()->m_rigidbody->setRestitution(10.f);
-					//m_EntityManager->DisplayAllEntities();
 					fireRate = 2.f;
 				}
 				else
@@ -282,6 +280,7 @@ void Application::ProcessInput()
 
 			if (INPUT->GetKey(SDLK_x))
 			{
+				m_EntityManager->DisplayAllEntities();
 				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			}
 			if (INPUT->GetKey(SDLK_c))
@@ -323,8 +322,6 @@ void Application::SetCamera(Camera* camera)
 }
 void Application::Update(float deltaTime)
 {
-	//m_EntityManager->GetEntity("Gun")->GetTransform()->SetPosition(m_EntityManager->GetEntity("SceneEntity")->GetTransform()->GetPosition() + (m_EntityManager->GetEntity("SceneEntity")->GetTransform()->GetForward() * 0.35f) + (m_EntityManager->GetEntity("SceneEntity")->GetTransform()->GetRight() * 0.2f));
-	//m_EntityManager->GetEntity("Gun")->GetTransform()->SetRotation(m_EntityManager->GetEntity("SceneEntity")->GetTransform()->GetRotation());
 	
 	if (fireRate <= 0)
 	{
@@ -408,14 +405,6 @@ void Application::InitialiseEntities()
 	man->AddComponent<RigidBody>();
 	man->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(1.f, 0.9f, 1.f)));
 
-	////KEEP
-	//std::shared_ptr<Entity> maya = m_EntityManager->CreateEntity("maya");
-	//maya->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("maya.obj"), Resources::GetInstance()->GetShader("BlinnPhong")));
-	//maya->GetTransform()->SetPosition(glm::vec3(15.0f, 3.0f, -20.f));
-	//maya->GetTransform()->RotateEulerAxis(80.f, glm::vec3(0.f, 0.f, 0.f));
-	//maya->GetTransform()->SetScale(glm::vec3(10.4f, 10.4f, 10.4f));
-	//maya->AddComponent<RigidBody>();
-	//maya->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(1.f, 1.f, 1.f)));
 
 	////KEEP
 	std::shared_ptr<Entity> Joker = m_EntityManager->CreateEntity("Joker");
@@ -426,7 +415,7 @@ void Application::InitialiseEntities()
 	Joker->AddComponent<RigidBody>();
 	Joker->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3( 1.f, 0.6f, 1.f)));
 
-	////Will cause error
+	////Will cause error on purpose
 	std::shared_ptr<Entity> ERRORTEST = m_EntityManager->CreateEntity("Error Test");
 	ERRORTEST->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel(""), Resources::GetInstance()->GetShader("BlinnPhong")));
 	ERRORTEST->GetTransform()->SetPosition(glm::vec3(-120.0f, 1.0f, -40.f));
@@ -442,15 +431,6 @@ void Application::InitialiseEntities()
 	mustang_GT->AddComponent<RigidBody>();
 	mustang_GT->GetComponent<RigidBody>()->Init(new BoxShape(glm::vec3(1.f, 1.f, 1.f)));
 
-
-
-	////std::shared_ptr<Entity> Gun = m_EntityManager->CreateEntity("Gun");
-	////Gun->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Portal Gun.obj"), Resources::GetInstance()->GetShader("BlinnPhong"), Resources::GetInstance()->GetTexture("lava.png")));
-	////Gun->GetTransform()->SetPosition(SceneEntity->GetTransform()->GetPosition() + (SceneEntity->GetTransform()->GetForward()));
-	//////RollerBall->GetTransform()->RotateEulerAxis(180.f, glm::vec3(0.f, 1.f, 0.f));
-	////Gun->GetTransform()->SetScale(glm::vec3(0.5f, 0.5f, 0.5f));
-	//////Gun->AddComponent<RigidBody>();
-	//////Gun->GetComponent<RigidBody>()->Init(new SphereShape(2.5f));
 
 	std::shared_ptr<Entity> PhysicsCube = m_EntityManager->CreateEntity("PhysicsCube");
 	PhysicsCube->AddComponent(new MeshRenderer(Resources::GetInstance()->GetModel("Cube.obj"), Resources::GetInstance()->GetShader("BlinnPhong"),Resources::GetInstance()->GetTexture("lava.png")));
@@ -470,6 +450,4 @@ void Application::InitialiseEntities()
 	//	a->GetComponent<RigidBody>()->Init(new SphereShape(1.f));
 	//	a->GetComponent<RigidBody>()->m_rigidbody->setRestitution(0.0f);
 	//}
-
-
 }

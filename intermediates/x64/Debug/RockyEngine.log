@@ -1,37 +1,139 @@
 ﻿  Application.cpp
+  BoxShape.cpp
+  Camera.cpp
+  CameraComponent.cpp
+  CapsuleShape.cpp
+  CollisionShape.cpp
+  Component.cpp
+  ConeShape.cpp
   ControllerComponent.cpp
-  Generating Code...
+  CylinderShape.cpp
+  DirectionalLight.cpp
+  Entity.cpp
+  EntityManager.cpp
+  Input.cpp
+  LightSource.cpp
 C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\LightSource.cpp(15,32): warning C4244:  'argument': conversion from 'float' to 'GLuint', possible loss of data
+  Logger.cpp
+  Mesh.cpp
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\LightSource.cpp(15,20): warning C4244:  'argument': conversion from 'float' to 'GLuint', possible loss of data
+  MeshRenderer.cpp
+  Model.cpp
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Mesh.cpp(52,67): warning C4267:  'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  MousePicking.cpp
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Model.cpp(114,51): warning C4267:  'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(29,15): warning C4244:  'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(29,15): warning C4244:         with
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(29,15): warning C4244:         [
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(29,15): warning C4244:             T=glm::i32
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(29,15): warning C4244:         ]
+  Generating Code...
+  Compiling...
+  Physics.cpp
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244:  'initializing': conversion from 'T' to 'float', possible loss of data
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244:         with
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244:         [
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244:             T=glm::i32
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244:         ]
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244: C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\EntityManager.cpp(52) : warning C4715: 'EntityManager::GetEntity': not all control paths return a value
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\MousePicking.cpp(30,15): warning C4244: C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\EntityManager.cpp(40) : warning C4715: 'EntityManager::CreateEntity': not all control paths return a value
+  PointLight.cpp
+  Resources.cpp
+  RigidBody.cpp
+  RockyEngine.cpp
+  Shader.cpp
+  ShaderProgram.cpp
+  ShadowMapping.cpp
+  SkyBox.cpp
+  SphereShape.cpp
+  Texture.cpp
+  Transform.cpp
+  Generating Code...
+C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Physics.cpp(12,42): warning C4305:  'argument': truncation from 'double' to 'const btScalar'
+BulletDynamics_Debug.lib(btConeTwistConstraint.obj) : warning LNK4099: PDB '㧀歕䁰歓Х' was not found with 'BulletDynamics_Debug.lib(btConeTwistConstraint.obj)' or at '㧀歕䁰歓Х'; linking object as if no debug info
+BulletDynamics_Debug.lib(btGeneric6DofConstraint.obj) : warning LNK4099: PDB '' was not found with 'BulletDynamics_Debug.lib(btGeneric6DofConstraint.obj)' or at ''; linking object as if no debug info
+BulletDynamics_Debug.lib(btSequentialImpulseConstraintSolver.obj) : warning LNK4099: PDB '' was not found with 'BulletDynamics_Debug.lib(btSequentialImpulseConstraintSolver.obj)' or at ''; linking object as if no debug info
+BulletDynamics_Debug.lib(btTypedConstraint.obj) : warning LNK4099: PDB '' was not found with 'BulletDynamics_Debug.lib(btTypedConstraint.obj)' or at ''; linking object as if no debug info
+BulletDynamics_Debug.lib(btDiscreteDynamicsWorld.obj) : warning LNK4099: PDB '' was not found with 'BulletDynamics_Debug.lib(btDiscreteDynamicsWorld.obj)' or at ''; linking object as if no debug info
+BulletDynamics_Debug.lib(btRigidBody.obj) : warning LNK4099: PDB '' was not found with 'BulletDynamics_Debug.lib(btRigidBody.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btDbvt.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btDbvt.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btDbvtBroadphase.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btDbvtBroadphase.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btDispatcher.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btDispatcher.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btOverlappingPairCache.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btOverlappingPairCache.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btQuantizedBvh.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btQuantizedBvh.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btActivatingCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btActivatingCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btBoxBoxCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btBoxBoxCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btBoxBoxDetector.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btBoxBoxDetector.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCollisionDispatcher.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCollisionDispatcher.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCollisionObject.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCollisionObject.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCollisionWorld.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCollisionWorld.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCompoundCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCompoundCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCompoundCompoundCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCompoundCompoundCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexConcaveCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexConcaveCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexConvexAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexConvexAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexPlaneCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexPlaneCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btDefaultCollisionConfiguration.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btDefaultCollisionConfiguration.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btEmptyCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btEmptyCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btHashedSimplePairCache.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btHashedSimplePairCache.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btManifoldResult.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btManifoldResult.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btSimulationIslandManager.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btSimulationIslandManager.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btSphereSphereCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btSphereSphereCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btSphereTriangleCollisionAlgorithm.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btSphereTriangleCollisionAlgorithm.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btUnionFind.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btUnionFind.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(SphereTriangleDetector.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(SphereTriangleDetector.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btBoxShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btBoxShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btBvhTriangleMeshShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btBvhTriangleMeshShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCapsuleShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCapsuleShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCollisionShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCollisionShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConcaveShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConcaveShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConeShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConeShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexInternalShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexInternalShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexPolyhedron.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexPolyhedron.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btCylinderShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btCylinderShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btMiniSDF.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btMiniSDF.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btOptimizedBvh.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btOptimizedBvh.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btPolyhedralConvexShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btPolyhedralConvexShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btSdfCollisionShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btSdfCollisionShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btSphereShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btSphereShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btTriangleCallback.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btTriangleCallback.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btTriangleMeshShape.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btTriangleMeshShape.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btContinuousConvexCollision.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btContinuousConvexCollision.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btConvexCast.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btConvexCast.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btGjkConvexCast.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btGjkConvexCast.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btGjkEpa2.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btGjkEpa2.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btGjkEpaPenetrationDepthSolver.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btGjkEpaPenetrationDepthSolver.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btGjkPairDetector.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btGjkPairDetector.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btMinkowskiPenetrationDepthSolver.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btMinkowskiPenetrationDepthSolver.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btPersistentManifold.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btPersistentManifold.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btRaycastCallback.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btRaycastCallback.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btSubSimplexConvexCast.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btSubSimplexConvexCast.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btVoronoiSimplexSolver.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btVoronoiSimplexSolver.obj)' or at ''; linking object as if no debug info
+BulletCollision_Debug.lib(btPolyhedralContactClipping.obj) : warning LNK4099: PDB '' was not found with 'BulletCollision_Debug.lib(btPolyhedralContactClipping.obj)' or at ''; linking object as if no debug info
+LinearMath_Debug.lib(btAlignedAllocator.obj) : warning LNK4099: PDB '' was not found with 'LinearMath_Debug.lib(btAlignedAllocator.obj)' or at ''; linking object as if no debug info
+LinearMath_Debug.lib(btConvexHullComputer.obj) : warning LNK4099: PDB '' was not found with 'LinearMath_Debug.lib(btConvexHullComputer.obj)' or at ''; linking object as if no debug info
+LinearMath_Debug.lib(btGeometryUtil.obj) : warning LNK4099: PDB '' was not found with 'LinearMath_Debug.lib(btGeometryUtil.obj)' or at ''; linking object as if no debug info
+LinearMath_Debug.lib(btQuickprof.obj) : warning LNK4099: PDB '' was not found with 'LinearMath_Debug.lib(btQuickprof.obj)' or at ''; linking object as if no debug info
+LinearMath_Debug.lib(btVector3.obj) : warning LNK4099: PDB '' was not found with 'LinearMath_Debug.lib(btVector3.obj)' or at ''; linking object as if no debug info
   RockyEngine.vcxproj -> C:\Users\james\Desktop\GP3\RockyEngine\bin\x64\Debug\RockyEngine_x64.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp-vc140-mt.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\assimp.exe
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\glew32.dll
   C:\Users\james\Desktop\GP3\RockyEngine\dependencies\dll\SDL2.dll
   4 File(s) copied
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Budova01.fbx
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Cube.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\dodge.fbx
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\error.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Freigther_BI_Export.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Freigther_BI_Export.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Joker.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Joker.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\maya.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\maya.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\muro.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\muro.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\mustang_GT.mtl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\mustang_GT.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\PoliceCar.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\PoliceCar.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Portal Gun.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\Portal Gun.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\r2-d2.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\r2-d2.obj
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\ship.fbx
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sls_amg.mtl
-  C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sls_amg.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\Models\sphere.obj
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\shadow_FRAG.glsl
   C:\Users\james\Desktop\GP3\RockyEngine\assets\shaders\shadow_VERT.glsl
@@ -133,4 +235,4 @@ C:\Users\james\Desktop\GP3\RockyEngine\RockyEngine\Application.cpp(14,10): warni
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\space\Freighter_C.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\space\Freighter_S.jpg
   C:\Users\james\Desktop\GP3\RockyEngine\assets\textures\space\Spec_Bake.png
-  125 File(s) copied
+  112 File(s) copied
